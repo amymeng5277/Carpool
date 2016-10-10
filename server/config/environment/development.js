@@ -6,10 +6,12 @@ module.exports = {
 
   // Sequelize connecton opions
   sequelize: {
-    uri: 'sqlite://',
+    uri: process.env.MYSQL_DEV_URL,
     options: {
-      logging: false,
-      storage: 'dev.sqlite',
+      logging: console.log,
+      dialectOptions: {
+        charset: 'utf8mb4'
+      },
       define: {
         timestamps: false
       }

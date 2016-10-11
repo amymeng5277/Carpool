@@ -32,51 +32,51 @@ This project was generated with the [Angular Full-Stack Generator](https://githu
    mengdongqis-MacBook-Pro:config mengdongqi$ cp local.env.sample.js local.env.js  
    ```
 
-5. Change directory to project working directory, and start vagrant box by `vagrant up`. Please make sure these ports are not used: `9000, 3306, 35729, 5858, 8080`.       
+5. Change directory to project working directory, and start vagrant box by `vagrant up`. Please make sure these ports are not used: `9000, 3306, 35729, 5858, 8080`.          
    Normally, this will do the following:
       - import the carpool-dev vbox
       - setting up the network, forward the ports to host machine  
       - install the all dev package dependencies 
 
-   ```bash
-   mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ vagrant up 
-   Bringing machine 'default' up with 'virtualbox' provider...
-   ==> default: Importing base box 'carpool-dev'...
-   ==> default: Matching MAC address for NAT networking...
-   ==> default: Setting the name of the VM: uwece651f16_js_default_1476210577303_17584
-   ==> default: Clearing any previously set network interfaces...
-   ==> default: Preparing network interfaces based on configuration...
-       default: Adapter 1: nat
-   ==> default: Forwarding ports...
-       default: 9000 (guest) => 9000 (host) (adapter 1)
-       default: 3306 (guest) => 3306 (host) (adapter 1)
-       default: 35729 (guest) => 35729 (host) (adapter 1)
-       default: 5858 (guest) => 5858 (host) (adapter 1)
-       default: 8080 (guest) => 8080 (host) (adapter 1)
-       default: 22 (guest) => 2222 (host) (adapter 1)
-   ==> default: Running 'pre-boot' VM customizations...
-   ==> default: Booting VM...
-   ==> default: Waiting for machine to boot. This may take a few minutes...
-       default: SSH address: 127.0.0.1:2222
-       default: SSH username: vagrant
-       default: SSH auth method: private key
-       default: Warning: Remote connection disconnect. Retrying...
-   ==> default: Machine booted and ready!
-   ==> default: Checking for guest additions in VM...
-       default: The guest additions on this VM do not match the installed version of
-       default: VirtualBox! In most cases this is fine, but in rare cases it can
-       default: prevent things such as shared folders from working properly. If you see
-       default: shared folder errors, please make sure the guest additions within the
-       default: virtual machine match the version of VirtualBox you have installed on
-       default: your host and reload your VM.
-       default: 
-       default: Guest Additions Version: 4.3.36
-       default: VirtualBox Version: 5.0
-   ==> default: Mounting shared folders...
-       default: /home/vagrant/uwece651f16_js => /Users/mengdongqi/Developer/uwece651f16_js
-   ```
+       ```bash
+       mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ vagrant up 
+       Bringing machine 'default' up with 'virtualbox' provider...
+       ==> default: Importing base box 'carpool-dev'...
+       ==> default: Matching MAC address for NAT networking...
+       ==> default: Setting the name of the VM: uwece651f16_js_default_1476210577303_17584
+       ==> default: Clearing any previously set network interfaces...
+       ==> default: Preparing network interfaces based on configuration...
+           default: Adapter 1: nat
+       ==> default: Forwarding ports...
+           default: 9000 (guest) => 9000 (host) (adapter 1)
+           default: 3306 (guest) => 3306 (host) (adapter 1)
+           default: 35729 (guest) => 35729 (host) (adapter 1)
+           default: 5858 (guest) => 5858 (host) (adapter 1)
+           default: 8080 (guest) => 8080 (host) (adapter 1)
+           default: 22 (guest) => 2222 (host) (adapter 1)
+       ==> default: Running 'pre-boot' VM customizations...
+       ==> default: Booting VM...
+       ==> default: Waiting for machine to boot. This may take a few minutes...
+           default: SSH address: 127.0.0.1:2222
+           default: SSH username: vagrant
+           default: SSH auth method: private key
+           default: Warning: Remote connection disconnect. Retrying...
+       ==> default: Machine booted and ready!
+       ==> default: Checking for guest additions in VM...
+           default: The guest additions on this VM do not match the installed version of
+           default: VirtualBox! In most cases this is fine, but in rare cases it can
+           default: prevent things such as shared folders from working properly. If you see
+           default: shared folder errors, please make sure the guest additions within the
+           default: virtual machine match the version of VirtualBox you have installed on
+           default: your host and reload your VM.
+           default: 
+           default: Guest Additions Version: 4.3.36
+           default: VirtualBox Version: 5.0
+       ==> default: Mounting shared folders...
+           default: /home/vagrant/uwece651f16_js => /Users/mengdongqi/Developer/uwece651f16_js
+       ```
 
-   Hopefully, this will succeed, if not, figure it out, and delete the `.vagrant` directory, and please try `vagrant up` again.
+    Hopefully, this will succeed, if not, figure it out, and delete the `.vagrant` directory, and please try `vagrant up` again.
 
 6. SSH into our dev environment and start the app by using `grunt serve` and open `localhost:9000` from your browser. 
    ```bash

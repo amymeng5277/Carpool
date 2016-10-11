@@ -11,7 +11,7 @@ This project was generated with the [Angular Full-Stack Generator](https://githu
         mengdongqis-MacBook-Pro:Desktop mengdongqi$ vagrant box add carpool-dev carpool-dev.box -f
         ==> box: Box file was not detected as metadata. Adding it directly…
         ==> box: Adding box 'carpool-dev' (v0) for provider: 
-           box: Unpacking necessary files from: file:///Users/mengdongqi/Desktop/carpool-dev.box
+            box: Unpacking necessary files from: file:///Users/mengdongqi/Desktop/carpool-dev.box
         ==> box: Successfully added box 'carpool-dev' (v0) for 'virtualbox'!
         ```
 

@@ -110,10 +110,10 @@ This project was generated with the [Angular Full-Stack Generator](https://githu
 
 8.  Never want this development environment? Just destroy it. 
 
-        ```bash
-        mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ vagrant destroy 6c557ca -f 
-        ==> default: Destroying VM and associated drives...
-        ```
+            ```bash
+            mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ vagrant destroy 6c557ca -f 
+            ==> default: Destroying VM and associated drives...
+            ```
 
 ## Getting Started step by step
 

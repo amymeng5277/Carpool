@@ -5,9 +5,9 @@ This project was generated with the [Angular Full-Stack Generator](https://githu
 ## Getting start by Vagrant + VirtualBox
 1.  Install [VirtualBox](https://www.virtualbox.org) and [Vagrant](https://www.vagrantup.com/).
 
-2.  Download and import our [carpool-dev.box]() file. 
+2.  Download and import our [carpool-dev.box](https://drive.google.com/open?id=0By0MHdh0tFsWSHowQ1gxQmxTd3c) file. 
     
-        ```sh
+        ```bash
         mengdongqis-MacBook-Pro:Desktop mengdongqi$ vagrant box add carpool-dev carpool-dev.box -f
         ==> box: Box file was not detected as metadata. Adding it directly…
         ==> box: Adding box 'carpool-dev' (v0) for provider: 

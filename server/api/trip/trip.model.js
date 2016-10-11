@@ -1,6 +1,6 @@
 'use strict';
 
-export default function(sequelize, DataTypes) {
+export default function (sequelize, DataTypes) {
   return sequelize.define('Trip', {
     _id: {
       type: DataTypes.INTEGER,
@@ -8,8 +8,12 @@ export default function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    name: DataTypes.STRING,
-    info: DataTypes.STRING,
-    active: DataTypes.BOOLEAN
+    f_city_id: DataTypes.INTEGER(11),
+    t_city_id: DataTypes.INTEGER(11),
+    dep_date_f: DataTypes.DATE,
+    dep_date_t: DataTypes.DATE,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+    driverId: DataTypes.INTEGER(11)
   });
 }

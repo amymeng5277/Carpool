@@ -14,6 +14,13 @@ var db = {
 };
 
 // Insert models below
+db.Vehicle = db.sequelize.import('../api/vehicle/vehicle.model');
+db.Trip = db.sequelize.import('../api/trip/trip.model');
+db.Query = db.sequelize.import('../api/query/query.model');
+db.Ptrip = db.sequelize.import('../api/ptrip/ptrip.model');
+db.Passenger = db.sequelize.import('../api/passenger/passenger.model');
+db.Message = db.sequelize.import('../api/message/message.model');
+db.Driver = db.sequelize.import('../api/driver/driver.model');
 db.Thing = db.sequelize.import('../api/thing/thing.model');
 db.User = db.sequelize.import('../api/user/user.model');
 

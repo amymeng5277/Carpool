@@ -1,5 +1,6 @@
 // Generated on 2016-10-10 using generator-angular-fullstack 3.0.0
 'use strict';
+var lodash = require('lodash');
 
 module.exports = function (grunt) {
   var localConfig;
@@ -106,10 +107,15 @@ module.exports = function (grunt) {
         }
       },
       express: {
-        files: ['<%= yeoman.server %>/**/*.{js,json}'],
+        files: ['<%= yeoman.server %>/**/*.{js,json}', '!<%= yeoman.server %>/_mocha/unit.spec.js'],
         tasks: ['express:dev', 'wait'],
         options: {
-          livereload: true,
+          livereload: {
+            files: [
+              '<%= yeoman.server %>/**/*.{js,json}',
+              '!<%= yeoman.server %>/_mocha/unit.spec.js',
+            ],
+          },
           spawn: false //Without this option specified express won't be reloaded
         }
       },
@@ -470,10 +476,10 @@ module.exports = function (grunt) {
         timeout: 5000 // set default mocha spec timeout
       },
       unit: {
-        src: ['<%= yeoman.server %>/**/*.spec.js']
+        src: ['<%= yeoman.server %>/**/*.spec.js', '!<%= yeoman.server %>/_mocha/unit.spec.js']
       },
       integration: {
-        src: ['<%= yeoman.server %>/**/*.integration.js']
+        src: ['<%= yeoman.server %>/**/*.integration.js', '!<%= yeoman.server %>/_mocha/test.spec.js']
       }
     },
 
@@ -704,6 +710,30 @@ module.exports = function (grunt) {
   grunt.registerTask('server', function () {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
     grunt.task.run(['serve']);
+  });
+
+  grunt.registerTask('singleTest', 'Execute single file test.', function (testType, fullnameFilter) {
+    if (testType === 'integration' && !lodash.isUndefined(fullnameFilter)) {
+      grunt.log.ok('Will only execute integration test under "' + fullnameFilter + '" name filter.')
+      grunt.config.set('mochaTest.integration.src', 'server/**/' + fullnameFilter + '.integration.js');
+      return grunt.task.run([
+        'env:all',
+        'env:test',
+        'mochaTest:integration'
+      ]);
+    } else if (testType === 'unit' && !lodash.isUndefined(fullnameFilter)) {
+      grunt.log.ok('Will only execute unit test under "' + fullnameFilter + '" name filter.')
+      grunt.config.set('mochaTest.unit.src', 'server/**/' + fullnameFilter + '.spec.js');
+      return grunt.task.run([
+        'env:all',
+        'env:test',
+        'mochaTest:unit'
+      ]);
+    }
+    //grunt.log.error(grunt.config('mochaTest.unit.src'));
+    //grunt.log.error(grunt.config('mochaTest.integration.src'));
+    grunt.fail.warn('Error singleTest Task running. Should run as: \n' +
+      'grunt singleTest:integration/unit:fullname_filter.');
   });
 
   grunt.registerTask('test', function(target, option) {

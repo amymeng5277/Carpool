@@ -73,11 +73,11 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
     cd uwece651f16_js
-    if [ ! -e 'node_modules']; then
+    if [ ! -e 'node_modules' ]; then
       ln -s /home/vagrant/node_modules node_modules
     fi
 
-    if [ ! -e 'client/bower_components']; then
+    if [ ! -e 'client/bower_components' ]; then
       ln -s /home/vagrant/bower_components client/bower_components
     fi
   SHELL

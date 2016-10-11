@@ -3,10 +3,10 @@
 This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.0.0.
 
 ## Getting start by Vagrant + VirtualBox
-1. Install [VirtualBox](https://www.virtualbox.org) and [Vagrant](https://www.vagrantup.com/).
+1.  Install [VirtualBox](https://www.virtualbox.org) and [Vagrant](https://www.vagrantup.com/).
 
-2. Download and import our [carpool-dev.box]() file. 
-   
+2.  Download and import our [carpool-dev.box]() file. 
+    
      ```bash
      mengdongqis-MacBook-Pro:Desktop mengdongqi$ vagrant box add carpool-dev carpool-dev.box -f
      ==> box: Box file was not detected as metadata. Adding it directly…
@@ -15,28 +15,28 @@ This project was generated with the [Angular Full-Stack Generator](https://githu
      ==> box: Successfully added box 'carpool-dev' (v0) for 'virtualbox'!
      ```
 
-3. Git clone our [repo](https://bitbucket.org/uwece651f16/uwece651f16_js). 
-   
-     ```bash
-     mengdongqis-MacBook-Pro:Developer mengdongqi$ git clone https://dongqi_meng@bitbucket.org/uwece651f16/uwece651f16_js.git 
-     Cloning into 'uwece651f16_js'...
-     remote: Counting objects: 258, done.
-     remote: Compressing objects: 100% (225/225), done.
-     remote: Total 258 (delta 88), reused 145 (delta 17)
-     Receiving objects: 100% (258/258), 88.49 KiB | 0 bytes/s, done.
-     Resolving deltas: 100% (88/88), done.
-     Checking connectivity... done.
-     ```
-
-4. Create a local env file and add `MYSQL_DEV_URL: 'mysql://root:root@localhost/carpool1_dev'` into local.env.js
-   
-     ```bash
-     mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ cd server/config/
-     mengdongqis-MacBook-Pro:config mengdongqi$ cp local.env.sample.js local.env.js  
-     ```
-
-5. Change directory to project working directory, and start vagrant box by `vagrant up`. Please make sure these ports are not used: `9000, 3306, 35729, 5858, 8080`.             
+3.  Git clone our [repo](https://bitbucket.org/uwece651f16/uwece651f16_js). 
     
+    ```bash
+    mengdongqis-MacBook-Pro:Developer mengdongqi$ git clone https://dongqi_meng@bitbucket.org/uwece651f16/uwece651f16_js.git 
+    Cloning into 'uwece651f16_js'...
+    remote: Counting objects: 258, done.
+    remote: Compressing objects: 100% (225/225), done.
+    remote: Total 258 (delta 88), reused 145 (delta 17)
+    Receiving objects: 100% (258/258), 88.49 KiB | 0 bytes/s, done.
+    Resolving deltas: 100% (88/88), done.
+    Checking connectivity... done.
+    ```
+
+4.  Create a local env file and add `MYSQL_DEV_URL: 'mysql://root:root@localhost/carpool1_dev'` into local.env.js
+
+    ```bash
+    mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ cd server/config/
+    mengdongqis-MacBook-Pro:config mengdongqi$ cp local.env.sample.js local.env.js  
+    ```
+
+5.  Change directory to project working directory, and start vagrant box by `vagrant up`. Please make sure these ports are not used: `9000, 3306, 35729, 5858, 8080`.             
+
     ```bash
     mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ vagrant up 
     Bringing machine 'default' up with 'virtualbox' provider...
@@ -82,38 +82,38 @@ This project was generated with the [Angular Full-Stack Generator](https://githu
     
     Hopefully, this will succeed, if not, figure it out, and delete the `.vagrant` directory, and please try `vagrant up` again.
 
-6. SSH into our dev environment and start the app by using `grunt serve` and open `localhost:9000` from your browser. 
+6.  SSH into our dev environment and start the app by using `grunt serve` and open `localhost:9000` from your browser. 
 
-       ```bash
-       mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ vagrant ssh
-       vagrant@vagrant-ubuntu-trusty-64:~$ cd uwece651f16_js/
-       vagrant@vagrant-ubuntu-trusty-64:~/uwece651f16_js$ grunt serve
-       Running "serve" task
-       .....
-       ```
+    ```bash
+    mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ vagrant ssh
+    vagrant@vagrant-ubuntu-trusty-64:~$ cd uwece651f16_js/
+    vagrant@vagrant-ubuntu-trusty-64:~/uwece651f16_js$ grunt serve
+    Running "serve" task
+    .....
+    ```
 
-7. Want to stop development? Just `vagrant halt` this virtual box. 
+7.  Want to stop development? Just `vagrant halt` this virtual box. 
 
-       ```bash
-       vagrant@vagrant-ubuntu-trusty-64:~$ exit
-       logout
-       Connection to 127.0.0.1 closed.
-       mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ pwd
-       /Users/mengdongqi/Developer/uwece651f16_js
-       mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ vagrant halt
-       ==> default: Attempting graceful shutdown of VM...
-       mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ vagrant global-status
-       id       name    provider   state    directory                                  
-       --------------------------------------------------------------------------------
-       6c557ca  default virtualbox poweroff /Users/mengdongqi/Developer/uwece651f16_js 
-       ```
+    ```bash
+    vagrant@vagrant-ubuntu-trusty-64:~$ exit
+    logout
+    Connection to 127.0.0.1 closed.
+    mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ pwd
+    /Users/mengdongqi/Developer/uwece651f16_js
+    mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ vagrant halt
+    ==> default: Attempting graceful shutdown of VM...
+    mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ vagrant global-status
+    id       name    provider   state    directory                                  
+    --------------------------------------------------------------------------------
+    6c557ca  default virtualbox poweroff /Users/mengdongqi/Developer/uwece651f16_js 
+    ```
 
-8. Never want this development environment? Just destroy it. 
+8.  Never want this development environment? Just destroy it. 
 
-       ```bash
-       mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ vagrant destroy 6c557ca -f 
-       ==> default: Destroying VM and associated drives...
-       ```
+    ```bash
+    mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ vagrant destroy 6c557ca -f 
+    ==> default: Destroying VM and associated drives...
+    ```
 
 ## Getting Started step by step
 

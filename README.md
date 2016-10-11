@@ -26,7 +26,13 @@ Resolving deltas: 100% (88/88), done.
 Checking connectivity... done.
 ```
 
-4. Change directory to project working directory, and start vagrant box by `vagrant up`. 
+4. Create a local env file and add `MYSQL_DEV_URL: 'mysql://root:root@localhost/carpool1_dev'` into local.env.js
+```bash
+mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ cd server/config/
+mengdongqis-MacBook-Pro:config mengdongqi$ cp local.env.sample.js local.env.js  
+```
+
+5. Change directory to project working directory, and start vagrant box by `vagrant up`. 
 Please make sure these ports are not used: `9000, 3306, 35729, 5858, 8080`.     
 
 Normally, this will do the following:
@@ -74,9 +80,34 @@ Bringing machine 'default' up with 'virtualbox' provider...
 
 Hopefully, this will succeed, if not, figure it out, and delete the `.vagrant` directory, and please try `vagrant up` again.
 
-5. SSH into our dev environment and start the app. 
+6. SSH into our dev environment and start the app by using `grunt serve` and open `localhost:9000` from your browser. 
 ```bash
+mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ vagrant ssh
+vagrant@vagrant-ubuntu-trusty-64:~$ cd uwece651f16_js/
+vagrant@vagrant-ubuntu-trusty-64:~/uwece651f16_js$ grunt serve
+Running "serve" task
+.....
+```
 
+7. Want to stop development? Just `vagrant halt` this virtual box. 
+```bash
+vagrant@vagrant-ubuntu-trusty-64:~$ exit
+logout
+Connection to 127.0.0.1 closed.
+mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ pwd
+/Users/mengdongqi/Developer/uwece651f16_js
+mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ vagrant halt
+==> default: Attempting graceful shutdown of VM...
+mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ vagrant global-status
+id       name    provider   state    directory                                  
+--------------------------------------------------------------------------------
+6c557ca  default virtualbox poweroff /Users/mengdongqi/Developer/uwece651f16_js 
+```
+
+8. Never want this development environment? Just destroy it. 
+```bash
+mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ vagrant destroy 6c557ca -f 
+==> default: Destroying VM and associated drives...
 ```
 
 ## Getting Started step by step

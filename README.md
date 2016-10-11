@@ -26,7 +26,9 @@ Resolving deltas: 100% (88/88), done.
 Checking connectivity... done.
 ```
 
-4. Change directory to project working directory, and start vagrant box by `vagrant up`.      
+4. Change directory to project working directory, and start vagrant box by `vagrant up`. 
+Please make sure these ports are not used: `9000, 3306, 35729, 5858, 8080`.     
+
 Normally, this will do the following:
   - import the carpool-dev vbox
   - setting up the network, forward the ports to host machine  

@@ -8,12 +8,20 @@ export default function (sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    userId: DataTypes.INTEGER(11)
   }, {
     timestamps: true,
-    associate: function (models) {
-      this.belongsToMany(models.Trip, {through: 'Ptrip', as: 'trips', timestamps: true});
-
-    }
+    classMethods: {
+      associate: function (models) {
+        this.belongsTo(models.User, {
+          foreignKey: 'userId',
+          as: 'user',
+        });
+        this.belongsToMany(models.Trip, {
+          through: 'Ptrip',
+          as: 'trips',
+          timestamps: true
+        });
+      }
+    },
   });
 }

@@ -17,7 +17,7 @@ export default function (sequelize, DataTypes) {
           as: 'user',
         });
         this.belongsToMany(models.Trip, {
-          through: 'Ptrip',
+          through: 'Ptrips',
           as: 'trips',
           timestamps: true
         });

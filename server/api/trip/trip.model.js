@@ -21,7 +21,7 @@ export default function (sequelize, DataTypes) {
           as: 'driver'
         });
         this.belongsToMany(models.Passenger, {
-          through: 'Ptrip',
+          through: 'Ptrips',
           as: 'passengers',
           timestamps: true
         });

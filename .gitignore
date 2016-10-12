@@ -3,8 +3,9 @@ public
 .tmp
 .sass-cache
 .idea
+.vagrant
 client/bower_components
 dist
 /server/config/local.env.js
 npm-debug.log
-server/_mocha/*.js
+/server/_mocha

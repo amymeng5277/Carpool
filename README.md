@@ -2,6 +2,15 @@
 
 This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.0.0.
 
+Links for you to review: 
+
+- [AngularJS 1.x](https://docs.angularjs.org/tutorial)
+- [Bootstrap](http://getbootstrap.com/getting-started/)
+- [Express](http://expressjs.com/en/starter/installing.html)
+- [Sequelize](http://sequelize.readthedocs.io/en/v3/)
+- [NodeJS](http://nodeguide.com/beginner.html)
+
+
 ## Getting start by Vagrant + VirtualBox
 1.  Install [VirtualBox](https://www.virtualbox.org) and [Vagrant](https://www.vagrantup.com/).
 

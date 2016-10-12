@@ -18,6 +18,8 @@ module.exports = {
   GOOGLE_ID:        'app-id',
   GOOGLE_SECRET:    'secret',
 
+  MYSQL_DEV_URL: 'mysql://root:root@localhost/carpool1_dev',
+  MYSQL_TEST_URL: 'mysql://root:root@localhost/carpool1_test',
   // Control debug level for modules using visionmedia/debug
   DEBUG: ''
 };

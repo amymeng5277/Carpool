@@ -8,13 +8,15 @@ module.exports = {
     uri: 'mongodb://localhost/uwece651f16new-test'
   },
   sequelize: {
-    uri: 'sqlite://',
+    uri: process.env.MYSQL_TEST_URL,
     options: {
-      logging: false,
-      storage: 'test.sqlite',
+      logging: console.log,
+      dialectOptions: {
+        charset: 'utf8mb4'
+      },
       define: {
         timestamps: false
       }
     }
-  }
+  },
 };

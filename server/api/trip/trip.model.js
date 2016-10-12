@@ -13,7 +13,15 @@ export default function (sequelize, DataTypes) {
     dep_date_f: DataTypes.DATE,
     dep_date_t: DataTypes.DATE,
     createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
-    driverId: DataTypes.INTEGER(11)
+    updatedAt: DataTypes.DATE
+  }, {
+    classMethods: {
+      associate: function (models) {
+        this.belongsTo(models.Driver,{
+          foreignKey: 'driverId',
+          as: 'driver'
+        });
+      }
+    }
   });
 }

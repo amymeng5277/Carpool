@@ -9,10 +9,9 @@ export default function (sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
     userId: DataTypes.INTEGER(11),
   }, {
+    timestamps: true,
     classMethods: {
       associate: function (models) {
         this.hasMany(models.Trip, {

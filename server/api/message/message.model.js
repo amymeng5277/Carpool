@@ -8,9 +8,9 @@ export default function (sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
     content: DataTypes.TEXT,
     userId: DataTypes.INTEGER(11)
+  }, {
+    timestamps: true,
   });
 }

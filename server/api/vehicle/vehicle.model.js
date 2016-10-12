@@ -11,8 +11,8 @@ export default function (sequelize, DataTypes) {
     maker: DataTypes.STRING(50),
     model: DataTypes.STRING(100),
     seat: DataTypes.INTEGER(11),
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
     driverId: DataTypes.INTEGER(11)
+  }, {
+    timestamps: true
   });
 }

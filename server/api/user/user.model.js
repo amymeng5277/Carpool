@@ -19,8 +19,6 @@ module.exports = function(sequelize, DataTypes) {
     name: DataTypes.STRING,
     fname: DataTypes.STRING(100),
     lname: DataTypes.STRING(100),
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
     email: {
       type: DataTypes.STRING(100),
       unique: {
@@ -48,7 +46,7 @@ module.exports = function(sequelize, DataTypes) {
     github: DataTypes.TEXT
 
   }, {
-
+    timestamps: true,
     /**
      * Virtual Getters
      */

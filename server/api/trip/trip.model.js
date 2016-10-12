@@ -12,12 +12,11 @@ export default function (sequelize, DataTypes) {
     t_city_id: DataTypes.INTEGER(11),
     dep_date_f: DataTypes.DATE,
     dep_date_t: DataTypes.DATE,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
   }, {
+    timestamps: true,
     classMethods: {
       associate: function (models) {
-        this.belongsTo(models.Driver,{
+        this.belongsTo(models.Driver, {
           foreignKey: 'driverId',
           as: 'driver'
         });

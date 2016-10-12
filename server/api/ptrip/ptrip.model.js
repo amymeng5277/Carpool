@@ -8,9 +8,9 @@ export default function (sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
     tripId: DataTypes.INTEGER(11),
     passengerId: DataTypes.INTEGER(11)
+  }, {
+    timestamps: true
   });
 }

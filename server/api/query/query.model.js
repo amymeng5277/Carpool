@@ -13,8 +13,8 @@ export default function (sequelize, DataTypes) {
     seat: DataTypes.INTEGER(11),
     dep_date_f: DataTypes.DATE,
     dep_date_t: DataTypes.DATE,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
     passengerId: DataTypes.INTEGER(11)
+  }, {
+    timestamps: true,
   });
 }

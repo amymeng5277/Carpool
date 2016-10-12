@@ -11,5 +11,9 @@ export default function (sequelize, DataTypes) {
     userId: DataTypes.INTEGER(11)
   }, {
     timestamps: true,
+    associate: function (models) {
+      this.belongsToMany(models.Trip, {through: 'Ptrip', as: 'trips', timestamps: true});
+
+    }
   });
 }

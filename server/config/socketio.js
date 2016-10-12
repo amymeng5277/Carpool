@@ -21,7 +21,6 @@ function onConnect(socket) {
   require('../api/vehicle/vehicle.socket').register(socket);
   require('../api/trip/trip.socket').register(socket);
   require('../api/query/query.socket').register(socket);
-  require('../api/ptrip/ptrip.socket').register(socket);
   require('../api/passenger/passenger.socket').register(socket);
   require('../api/message/message.socket').register(socket);
   require('../api/driver/driver.socket').register(socket);

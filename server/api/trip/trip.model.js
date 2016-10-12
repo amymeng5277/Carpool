@@ -20,6 +20,8 @@ export default function (sequelize, DataTypes) {
           foreignKey: 'driverId',
           as: 'driver'
         });
+        this.belongsToMany(models.Passenger, {through: 'Ptrip', as: 'passengers', timestamps: true});
+
       }
     }
   });

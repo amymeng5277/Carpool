@@ -13,7 +13,6 @@ module.exports = function(app) {
   app.use('/api/vehicles', require('./api/vehicle'));
   app.use('/api/trips', require('./api/trip'));
   app.use('/api/querys', require('./api/query'));
-  app.use('/api/ptrips', require('./api/ptrip'));
   app.use('/api/passengers', require('./api/passenger'));
   app.use('/api/messages', require('./api/message'));
   app.use('/api/drivers', require('./api/driver'));

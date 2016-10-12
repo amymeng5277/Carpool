@@ -17,7 +17,6 @@ var db = {
 db.Vehicle = db.sequelize.import('../api/vehicle/vehicle.model');
 db.Trip = db.sequelize.import('../api/trip/trip.model');
 db.Query = db.sequelize.import('../api/query/query.model');
-db.Ptrip = db.sequelize.import('../api/ptrip/ptrip.model');
 db.Passenger = db.sequelize.import('../api/passenger/passenger.model');
 db.Message = db.sequelize.import('../api/message/message.model');
 db.Driver = db.sequelize.import('../api/driver/driver.model');

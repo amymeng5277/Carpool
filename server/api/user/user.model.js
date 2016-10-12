@@ -59,6 +59,10 @@ module.exports = function (sequelize, DataTypes) {
           as: 'passenger',
           constraints: false,
         });
+        this.hasMany(models.Message, {
+          foreignKey: 'userId',
+          as: 'messages',
+        });
       }
     },
     indexes: [{

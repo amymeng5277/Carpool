@@ -10,9 +10,16 @@ export default function (sequelize, DataTypes) {
     },
     maker: DataTypes.STRING(50),
     model: DataTypes.STRING(100),
-    seat: DataTypes.INTEGER(11),
-    driverId: DataTypes.INTEGER(11)
+    seat: DataTypes.INTEGER(11)
   }, {
-    timestamps: true
+    timestamps: true,
+    classMethods: {
+      associate: function (models) {
+        this.belongsTo(models.Driver, {
+          foreignKey: 'driverId',
+          as: 'driver'
+        });
+      }
+    }
   });
 }

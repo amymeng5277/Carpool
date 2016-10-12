@@ -18,6 +18,10 @@ export default function (sequelize, DataTypes) {
           foreignKey: 'driverId',
           as: 'trips'
         });
+        this.hasMany(models.Vehicle, {
+          foreignKey: 'driverId',
+          as: 'vehicles'
+        });
       }
     }
   });

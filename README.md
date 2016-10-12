@@ -28,7 +28,7 @@ This project was generated with the [Angular Full-Stack Generator](https://githu
         Checking connectivity... done.
         ```
 
-4.  Create a local env file and add `MYSQL_DEV_URL: 'mysql://root:root@localhost/carpool1_dev'` into local.env.js
+4.  Create a local env file and add `MYSQL_DEV_URL: 'mysql://root:root@localhost/carpool1_dev'` into local.env.js (you need copy this file from `local.env.sample.js` file)
 
         ```bash
         mengdongqis-MacBook-Pro:uwece651f16_js mengdongqi$ cd server/config/

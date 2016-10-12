@@ -22,6 +22,7 @@ db.Message = db.sequelize.import('../api/message/message.model');
 db.Driver = db.sequelize.import('../api/driver/driver.model');
 db.Thing = db.sequelize.import('../api/thing/thing.model');
 db.User = db.sequelize.import('../api/user/user.model');
+db.Ptrip = db.sequelize.import('../api/ptrip/ptrip.model');
 
 Object.keys(db).forEach(function (modelName) {
   if ("associate" in db[modelName]) {

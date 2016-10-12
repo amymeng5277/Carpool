@@ -16,14 +16,17 @@ export default function (sequelize, DataTypes) {
         this.belongsTo(models.User, {
           foreignKey: 'userId',
           as: 'user',
+          constraints: false,
         });
         this.hasMany(models.Trip, {
           foreignKey: 'driverId',
-          as: 'trips'
+          as: 'trips',
+          constraints: false,
         });
         this.hasMany(models.Vehicle, {
           foreignKey: 'driverId',
-          as: 'vehicles'
+          as: 'vehicles',
+          constraints: false,
         });
       }
     }

@@ -16,6 +16,7 @@ export default function (sequelize, DataTypes) {
         this.belongsTo(models.User, {
           foreignKey: 'userId',
           as: 'user',
+          constraints: false
         });
       }
     },

@@ -18,11 +18,13 @@ export default function (sequelize, DataTypes) {
       associate: function (models) {
         this.belongsTo(models.Driver, {
           foreignKey: 'driverId',
-          as: 'driver'
+          as: 'driver',
+          constraints: false,
         });
         this.belongsToMany(models.Passenger, {
           through: 'Ptrips',
           as: 'passengers',
+          constraints: false,
           timestamps: true
         });
 

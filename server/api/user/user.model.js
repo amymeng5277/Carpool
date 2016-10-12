@@ -52,32 +52,26 @@ module.exports = function (sequelize, DataTypes) {
         this.belongsTo(models.Driver, {
           foreignKey: 'driverId',
           as: 'driver',
-          constraints: false,
+          constraints: false
         });
         this.belongsTo(models.Passenger, {
           foreignKey: 'passengerId',
           as: 'passenger',
-          constraints: false,
+          constraints: false
         });
         this.hasMany(models.Message, {
           foreignKey: 'userId',
           as: 'messages',
+          constraints: false
         });
         this.hasMany(models.Query, {
           foreignKey: 'userId',
           as: 'queries',
+          constraints: false
         });
       }
     },
-    indexes: [{
-      unique: false,
-      name: 'driverId_index',
-      fields: ['driverId']
-    }, {
-      unique: false,
-      name: 'passengerId_index',
-      fields: ['passengerId']
-    }],
+    indexes: [],
     /**
      * Virtual Getters
      */

@@ -1,15 +1,18 @@
 'use strict';
 
-export default function(sequelize, DataTypes) {
+export default function (sequelize, DataTypes) {
   return sequelize.define('Vehicle', {
     _id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    name: DataTypes.STRING,
-    info: DataTypes.STRING,
-    active: DataTypes.BOOLEAN
+    maker: DataTypes.STRING(50),
+    model: DataTypes.STRING(100),
+    seat: DataTypes.INTEGER(11),
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+    driverId: DataTypes.INTEGER(11)
   });
 }

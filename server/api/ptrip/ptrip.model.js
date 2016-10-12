@@ -1,15 +1,16 @@
 'use strict';
 
-export default function(sequelize, DataTypes) {
+export default function (sequelize, DataTypes) {
   return sequelize.define('Ptrip', {
     _id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    name: DataTypes.STRING,
-    info: DataTypes.STRING,
-    active: DataTypes.BOOLEAN
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+    tripId: DataTypes.INTEGER(11),
+    passengerId: DataTypes.INTEGER(11)
   });
 }

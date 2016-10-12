@@ -3,7 +3,7 @@
 export default function (sequelize, DataTypes) {
   return sequelize.define('Trip', {
     _id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true

@@ -11,14 +11,18 @@ module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
 
     _id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
     name: DataTypes.STRING,
+    fname: DataTypes.STRING(100),
+    lname: DataTypes.STRING(100),
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
     email: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       unique: {
         msg: 'The specified email address is already in use.'
       },

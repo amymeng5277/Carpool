@@ -3,13 +3,13 @@
 export default function(sequelize, DataTypes) {
   return sequelize.define('Passenger', {
     _id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    name: DataTypes.STRING,
-    info: DataTypes.STRING,
-    active: DataTypes.BOOLEAN
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+    userId: DataTypes.INTEGER(11)
   });
 }

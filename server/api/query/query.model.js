@@ -16,5 +16,13 @@ export default function (sequelize, DataTypes) {
     passengerId: DataTypes.INTEGER(11)
   }, {
     timestamps: true,
+    classMethods: {
+      associate: function (models) {
+        this.belongsTo(models.User, {
+          foreignKey: 'userId',
+          as: 'user',
+        });
+      }
+    },
   });
 }

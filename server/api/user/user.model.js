@@ -63,6 +63,10 @@ module.exports = function (sequelize, DataTypes) {
           foreignKey: 'userId',
           as: 'messages',
         });
+        this.hasMany(models.Query, {
+          foreignKey: 'userId',
+          as: 'queries',
+        });
       }
     },
     indexes: [{

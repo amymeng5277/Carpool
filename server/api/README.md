@@ -29,9 +29,9 @@
 | /api/trips/ID/passengers | POST | add a passenger to a trip |
 | /api/trips/ID/passengers | DELETE | delete a passenger from a trip |
 
-####POST /api/trips/ID/passengers
+**POST /api/trips/ID/passengers**
 
-**payload**
+payload
 ```
 {
   "passengerID": ID

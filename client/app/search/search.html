@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-sm-3">
       <div class="input-group stylish-input-group">
-          <input type="text" class="form-control"  placeholder="Pick-up" >
+          <input type="text" class="form-control"  placeholder="Pick-up" id="pickup">
           <span class="input-group-addon">  
           </span>
       </div>
@@ -116,5 +116,31 @@
     </tbody>
   </table>
 </div>
+
+<script>
+function initMap() {
+  var input = document.getElementById('pickup');
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  var infoWindow = new google.maps.InfoWindow();
+  autocomplete.addListener('place_changed', function(){
+    infoWindow.close();
+    var place = autocomplete.getPlace();
+    var address = "";
+    if(place.address_components){
+      address = [
+        (place.address_components[0] && place.address_components[0].short_name || ''),
+        (place.address_components[1] && place.address_components[1].short_name || ''),
+        (place.address_components[2] && place.address_components[2].short_name || '')
+      ].join(' ');
+    }
+
+    input.setAttribute('place_id', place.id);
+    infoWindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+  });
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqEKnuKtS4dpk7wHA4feI0j90LrDeJY_U&libraries=places&callback=initMap" async defer></script>
+
 
 <footer></footer>

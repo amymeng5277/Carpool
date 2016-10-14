@@ -13,6 +13,8 @@
 import jsonpatch from 'fast-json-patch';
 import {Trip} from '../../sqldb';
 
+var db = require('../../sqldb');
+
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
@@ -130,4 +132,103 @@ export function destroy(req, res) {
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));
+}
+
+export function getDriver(req, res, next) {
+  var tripId = req.params.id;
+
+  Trip.find({
+    where: {
+      _id: tripId
+    },
+    include: [{
+      model: db.Driver,
+      as: 'driver',
+      include: [{
+        model: db.User,
+        as: 'user'
+      }]
+    }]
+  })
+    .then(function(trip) {
+      if(!trip){
+        return res.status(404).end();
+      }
+      res.json(trip.driver.user.profile);
+    })
+    .catch(function(err) {
+      next(err);
+    });
+}
+
+export function getPassengers(req, res, next) {
+  var tripId = req.params.id;
+
+  Trip.find({
+    where: {
+      _id: tripId
+    },
+    include: [{
+      model: db.Passenger,
+      as: 'passengers',
+      include: [{
+        model: db.User,
+        as: 'user'
+      }]
+    }]
+  })
+    .then(function(trip) {
+      if(!trip){
+        return res.status(404).end();
+      }
+      res.json(trip.passengers.map(function(passenger){
+        return passenger.user.profile;
+      }));
+    })
+    .catch(function(err) {
+      next(err);
+    });
+}
+
+export function addPassenger(req, res, next) {
+  Trip.find({
+    where: {
+      _id: req.params.id
+    },
+    include: [{
+      model: db.Passenger,
+      as: 'passengers'
+    }]
+  })
+    .then(function(trip){
+      if(!trip){
+        return null;
+      }
+
+      return db.User.find({
+        where: {
+          _id: req.body.passengerId
+        },
+        include: [{
+          model: db.Passenger,
+          as: 'passenger'
+        }]
+      })
+        .then(function(user){
+          if(!user){
+            return null;
+          }
+
+          return trip.addPassengers(user.passenger);
+        });
+    })
+    .then(function(passenger){
+      if(!passenger){
+        return res.status(404).end();
+      }
+      res.json(passenger);
+    })
+    .catch(function(err){
+      next(err);
+    });
 }

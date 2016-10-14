@@ -101,7 +101,7 @@ class ModalInstanceCtrl {
   }
 
   disabled(date, mode) {
-    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    return false;
   }
 
   toggleMin() {

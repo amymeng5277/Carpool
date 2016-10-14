@@ -11,5 +11,8 @@ router.post('/', controller.create);
 router.put('/:id', controller.upsert);
 router.patch('/:id', controller.patch);
 router.delete('/:id', controller.destroy);
+router.get('/:id/driver', controller.getDriver);
+router.get('/:id/passengers', controller.getPassengers);
+router.post('/:id/passengers', controller.addPassenger);
 
 module.exports = router;

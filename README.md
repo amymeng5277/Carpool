@@ -5,7 +5,8 @@ This project was generated with the [Angular Full-Stack Generator](https://githu
 Links for you to review: 
 
 - [AngularJS 1.x](https://docs.angularjs.org/tutorial)
-- [Bootstrap](http://getbootstrap.com/getting-started/)
+- [**Bootstrap CSS** only](http://getbootstrap.com/getting-started/)
+- [**Bootstrap Components** should go here!](http://angular-ui.github.io/bootstrap/versioned-docs/0.13.4/) 
 - [Express](http://expressjs.com/en/starter/installing.html)
 - [Sequelize](http://sequelize.readthedocs.io/en/v3/)
 - [NodeJS](http://nodeguide.com/beginner.html)

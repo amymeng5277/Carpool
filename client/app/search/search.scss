@@ -1,0 +1,58 @@
+.stylish-input-group .input-group-addon{
+    background: white !important;
+}
+.stylish-input-group .form-control{
+    border-right:0;
+    box-shadow:0 0 0;
+    border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+.margin-top-20 {
+    margin-top: 20px;
+}
+button.transparent-btn {
+    padding: 0;
+    border: none;
+    background: none;
+}
+img.car-seats {
+    margin: 5px;
+    height: 1.5em;
+}
+button:focus {outline:0;}
+.expandDetail {
+    display:none;
+}
+table {
+    table-layout: fixed;
+}
+button.btn-join {
+    margin: -5px 1px 1px 8px;
+    min-width: 50px;
+    border: none;
+}
+button.btn-join:focus {outline:0;}
+.text-alert {
+    background-color: #ff3232;
+    padding: 2px;
+    height: 1.8em;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+.half-fill {
+    width: 45%
+}
+
+.pac-logo:after {
+  background-image: none !important;
+  padding: 0px !important;
+  height: 0px !important;
+}
+
+.hdpi.pac-logo:after {
+  background-image: none !important;
+}

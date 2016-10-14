@@ -8,9 +8,16 @@ var router = express.Router();
 
 router.get('/', auth.hasRole('admin'), controller.index);
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);
+router.get('/:id/trips', auth.isAuthenticated(), controller.myTrips);
+//router.get('/:id/trips', controller.myTrips);
+router.get('/:id/vehicles', auth.isAuthenticated(), controller.myVehicles);
+//router.get('/:id/vehicles', controller.myVehicles);
+router.get('/:id/:resource', auth.isAuthenticated(), controller.subResource);
+//router.get('/:id/:resource', controller.subResource);
 router.get('/me', auth.isAuthenticated(), controller.me);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.get('/:id', auth.isAuthenticated(), controller.show);
+//router.get('/:id', controller.show);
 router.post('/', controller.create);
 
 module.exports = router;

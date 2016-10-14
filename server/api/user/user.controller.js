@@ -5,6 +5,8 @@ import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 
+var db = require('../../sqldb');
+
 function validationError(res, statusCode) {
   statusCode = statusCode || 422;
   return function(err) {
@@ -152,6 +154,118 @@ exports.me = function(req, res, next) {
       return next(err);
     });
 };
+
+/**
+ * Get my trips
+ */
+exports.myTrips = function(req, res, next) {
+  var userId = req.params.id;
+
+  User.find({
+    where: {
+      _id: userId
+    },
+    include: [{
+      model: db.Driver,
+      as: 'driver',
+      include: [{
+        model: db.Trip,
+        as: 'trips'
+        }]
+    },{
+      model: db.Passenger,
+      as: 'passenger',
+      include: [{
+        model: db.Trip,
+        as: 'trips'
+      }]
+    }],
+  })
+    .then(function(user){
+      if (!user) {
+        return res.json([]);
+      }
+
+      var trips = [];
+      if(user.driver != null){
+        trips.push.apply(trips, user.driver.trips);
+      }
+      if(user.passenger != null){
+        trips.push.apply(trips, user.passenger.trips);
+      }
+      res.json(trips);
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+};
+
+/**
+ * Get my vehicles
+ */
+exports.myVehicles = function(req, res, next) {
+  var userId = req.params.id;
+
+  User.find({
+    where: {
+      _id: userId
+    },
+    include: [{
+      model: db.Driver,
+      as: 'driver',
+      include: [{
+        model: db.Vehicle,
+        as: 'vehicles'
+      }],
+    }],
+  })
+    .then(function(user){
+      if (!user || !user.driver) {
+        return res.json([]);
+      }
+
+      res.json(user.driver.vehicles);
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+}
+
+/**
+ * Get my sub resources
+ */
+exports.subResource = function(req, res, next) {
+  var userId = req.params.id;
+  var resource = req.params.resource;
+  var name2Model = {
+    'messages': db.Message,
+    'queries': db.Query,
+  }
+
+  if(! name2Model[resource]){
+    return res.status(404).end();
+  }
+
+  User.find({
+    where: {
+      _id: userId
+    },
+    include: [{
+      model: name2Model[resource],
+      as: resource,
+    }],
+  })
+    .then(function(user){
+      if (!user) {
+        return res.json([]);
+      }
+
+      res.json(user[resource]);
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+}
 
 /**
  * Authentication callback

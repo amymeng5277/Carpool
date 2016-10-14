@@ -12,18 +12,152 @@
     <div collapse="nav.isCollapsed" class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
         <li ng-repeat="item in nav.menu" ui-sref-active="active">
-            <a ui-sref="{{item.state}}">{{item.title}}</a>
+          <a ui-sref="{{item.state}}">{{item.title}}</a>
         </li>
         <li ng-show="nav.isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+        <li><a href="" ng-click="nav.open('lg')">Post trip</a></li>
+        <li><a ui-sref="search">Search trip</a></li>
         <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Sign up</a></li>
         <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Login</a></li>
-        <li ng-show="nav.isLoggedIn()"><p class="navbar-text">Hello {{ nav.getCurrentUser().name }}</p> </li>
+        <li ng-show="nav.isLoggedIn()"><p class="navbar-text">Hello {{ nav.getCurrentUser().name }}</p></li>
         <li ng-show="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="settings"><span class="glyphicon glyphicon-cog"></span></a></li>
         <li ng-show="nav.isLoggedIn()"><a ui-sref="logout">Logout</a></li>
       </ul>
     </div>
   </div>
 </div>
+
+<script type="text/ng-template" id="myModalContent.html">
+  <div class="modal-header">
+    <h3 class="modal-title">Post a Trip</h3>
+  </div>
+  <div class="modal-body">
+
+    <h4><p class="bg-primary"><strong>Trip indormation</strong></p></h4>
+    <blockquote>
+      <div class="row row-condensed space-4">
+        <label class="col-sm-2" for="destination">
+          Destination
+        </label>
+
+        <div class="col-sm-10">
+          <input id="trip_destination" name="user[first_name]" size="30" type="text" value="">
+        </div>
+      </div>
+      <br>
+
+      <div class="row row-condensed space-4">
+        <label class="col-sm-2" for="pick_up_location">
+          Pick up location
+        </label>
+
+        <div class="col-sm-10">
+          <input id="pick_up_location" name="user[last_name]" size="30" type="text" value="">
+        </div>
+      </div>
+      <br>
+
+      <div class="row row-condensed space-4">
+        <label class="col-sm-2" for="pick_up_date">
+          Pick up date <i class="icon icon-lock icon-ebisu" data-behavior="tooltip" aria-label="Private"></i>
+        </label>
+
+
+        <div>
+          <div class="row">
+            <div class="col-md-3">
+              <p class="input-group">
+                <input type="text"
+                       class="form-control"
+                       datepicker-popup
+                       ng-model="pickup_dt"
+                       is-open="status_pickup.opened"
+                       min-date="minDate"
+                       max-date="maxDate"
+                       datepicker-options="dateOptions"
+                       date-disabled="modal.disabled(date, mode)"
+                       ng-required="true" close-text="Close"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="modal.open($event, 'pickup')">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+              </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="row row-condensed space-4">
+        <label class="col-sm-2" for="arrive_date">
+          Arrive date
+        </label>
+
+        <div>
+          <div class="row">
+            <div class="col-md-3">
+              <p class="input-group">
+                <input type="text"
+                       class="form-control"
+                       datepicker-popup
+                       ng-model="arrive_dt"
+                       is-open="status_arrive.opened"
+                       min-date="minDate"
+                       max-date="maxDate"
+                       datepicker-options="dateOptions"
+                       date-disabled="modal.disabled(date, mode)"
+                       ng-required="true" close-text="Close"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="modal.open($event, 'arrive')">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+              </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="row row-condensed space-4">
+        <label class="col-sm-2" for="user_last_name">
+          Car model
+        </label>
+
+        <div class="col-sm-10">
+
+          <input id="user_carmodle" name="user[carmodle]" size="30" type="text" value="">
+        </div>
+      </div>
+      <br>
+
+      <div class="row row-condensed space-4">
+        <label class="col-sm-2" for="user_birthdate">
+          Seats
+        </label>
+
+        <div class="col-sm-10">
+          <div class="select">
+            <select id="user_birthdate_2i" name="user[birthdate(2i)]">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="modal.ok()">Submit</button>
+    <button class="btn btn-warning" type="button" ng-click="modal.cancel()">Cancel</button>
+  </div>
+</script>

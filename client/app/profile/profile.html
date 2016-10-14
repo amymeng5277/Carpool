@@ -2,45 +2,87 @@
 
 <div class="container">
   <div class="jumbotron">
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */   
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;}
+    }
+  </style>
+
     <h1>Profile</h1>
-  </div>
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#">Driver</a></li>
-    <li><a href="#">Passenger</a></li>
-  </ul>
-  <br>
-  <p><strong>Note:</strong> You can edit and see your infomation in your profile.</p>
-  <h4><p class="bg-primary"> <strong>Basic information</strong></p></h4>
-  <blockquote>
-  <div class="row row-condensed space-4">
-        <label class="col-sm-2" for="user_first_name">
+    <br>
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>Your personal profile</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="#section1">Basic</a></li>
+        <li><a href="#section2">Contact</a></li>
+        <li><a href="#section3">Optional</a></li>
+        <li><a href="#section3">Preference</a></li>
+      </ul><br>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search...">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+    </div>
+
+
+    <div class="col-sm-9">
+      <h4><small>Note:You can edit and see your infomation in your profile.</small></h4>
+ 	  <div class="panel-group">
+ 	  <div class="panel panel-primary">
+      <div class="panel-heading"> <strong>Basic information</strong></div>
+      <div class="panel-body"><div class="row row-condensed space-4">
+     <br> <label class="col-sm-3" for="user_first_name">
           First Name 
-        </label>
-        <div class="col-sm-10">
+      </label>
+     	 <div class="col-sm-6">
           
-      <input id="user_first_name" name="user[first_name]" size="30" type="text" value=""> 
+      <input id="user_first_name" class="form-control" name="user[first_name]" size="30" type="text" value="" placeholder="Enter first name"> 
 
 
-        </div>
+       	</div>
 	</div>
-<br>
+  
+      <br>
 
-<div class="row row-condensed space-4">
-        <label class="col-sm-2" for="user_last_name">
+      
+      <div class="row row-condensed space-4">
+        <label class="col-sm-3" for="user_last_name">
           Last Name 
         </label>
-        <div class="col-sm-10">
+        <div class="col-sm-6">
           
-      <input id="user_last_name" name="user[last_name]" size="30" type="text" value="">
+      <input id="user_last_name" class="form-control" name="user[last_name]" size="30" type="text" value="" placeholder="Enter last name">
         </div>
       </div>
 <br>
-
-<div class="row row-condensed space-4">
-        <label class="col-sm-2" for="user_sex">
+ 
+ <div class="row row-condensed space-4">
+        <label class="col-sm-3" for="user_sex">
           I Am <i class="icon icon-lock icon-ebisu" data-behavior="tooltip" aria-label="Private"></i>
         </label>
-        <div class="col-sm-10">
+        <div class="col-sm-6">
           
       <div class="select">
         <select id="user_sex" name="user[sex]"><option value="" selected="selected">Gender</option>
@@ -51,24 +93,14 @@
      </div>
     </div>
    <br>
-
-<div class="row row-condensed space-4">
-        <label class="col-sm-2" for="user_last_name">
-          Car model 
-        </label>
-        <div class="col-sm-10">
-          
-      <input id="user_carmodle" name="user[carmodle]" size="30" type="text" value="">
-        </div>
-      </div>
-<br>
-<div class="row row-condensed space-4">
-        <label class="col-sm-2" for="user_birthdate">
+   <div class="row row-condensed space-4">
+        <label class="col-sm-3" for="user_birthdate">
           Birth Date 
         </label>
-        <div class="col-sm-10">
-          
-        <div class="select">
+        <class="col-sm-6">
+       <form role="form" class="form-inline"> 
+       <div class="form-group">
+        <class="select">
           <select id="user_birthdate_2i" name="user[birthdate(2i)]">
 <option value="1">January</option>
 <option value="2">February</option>
@@ -77,15 +109,14 @@
 <option value="5">May</option>
 <option value="6">June</option>
 <option value="7">July</option>
-<option value="8">August</option>
+<option value="8">August<option>
 <option value="9">September</option>
 <option value="10">October</option>
 <option value="11">November</option>
 <option value="12">December</option>
 </select>
 
-        </div>
-        <div class="select">
+        <class="select">
           <select id="user_birthdate_3i" name="user[birthdate(3i)]">
 <option value="1">1</option>
 <option value="2">2</option>
@@ -119,9 +150,11 @@
 <option value="30">30</option>
 <option value="31">31</option>
 </select>
-</div>
-        <div class="select">
+
+        <class="select">
           <select id="user_birthdate_1i" name="user[birthdate(1i)]">
+<option value="2000">2000</option>
+<option value="1999">1999</option>
 <option value="1998">1998</option>
 <option value="1997">1997</option>
 <option value="1996">1996</option>
@@ -152,21 +185,241 @@
 <option value="1971">1971</option>
 <option value="1970">1970</option>
 </select>
-   </div>
-  </blockquote>
-
-  <h4><p class="bg-primary"> <strong>Contact information</strong></p></h4>
-  <blockquote>
-
-
-
-
-
-
- </blockquote>
-
+<br>
+<br>
 </div>
+   </form>
+     </div>
+     </div>
+     </div>
+
+ <div class="panel panel-primary">
+      <div class="panel-heading"> <strong>Contact information</strong></div>
+      <div class="panel-body"><div class="row row-condensed space-4">
+     <br> <label class="col-sm-3" for="user_eamil">
+          E-mail address 
+      </label>
+      <div class="col-sm-6">
+          
+      <input id="user_eamil" class="form-control" name="user[email]" size="30" type="text" value="" placeholder="for example: 123@gmail.com"> 
+       	</div>
+	</div>
+      <br>
+
+      <div class="row row-condensed space-4">
+      <label class="col-sm-3" for="user_phone">
+         Phone 
+      </label>
+      <div class="col-sm-6">
+          
+      <input id="user_phone" class="form-control" name="user[phone]" size="30" type="text" value="" placeholder="Enter your cell phone number"> 
+       	</div>
+	</div>
+      <br>
+      <br>
+      </div>
+      </div>
 
 
+<div class="panel panel-primary">
+      <div class="panel-heading"> <strong>Optional information</strong></div>
+     <br> <h4><small>&nbsp &nbsp Note:If you are a driver,please complete this part.</small></h4>
+      <div class="panel-body"><div class="row row-condensed space-4">
+      <label class="col-sm-3">
+          Do you own a car?
+      </label>
+      <div class="col-sm-6">
+     <form>
+   		<label class="radio-inline">
+      	 <input type="radio" name="optradio">Yes
+    	</label>
+    	<label class="radio-inline">
+     	 <input type="radio" name="optradio">No
+    	</label>
+     </form>
+       	</div>
+	</div>
+      <br>
 
-<footer></footer>
+      <div class="row row-condensed space-4">
+    <div class="form-group">
+      <label class="col-sm-3">
+          The number of the your cars
+      </label>
+      <div class="col-sm-6">
+      <select class="form-control" id="sel1">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>more than 3</option>
+      </select>
+       	</div>
+	</div>
+	</div>
+      <br>
+
+ <div class="row row-condensed space-4">
+ <h4><strong> &nbsp Describe your car(s):</h4></p>
+ <p><small><strong>&nbsp &nbspCar 1</strong></small></p>
+ <label class="col-sm-3">
+          The manuacturer
+      </label>
+     	 <div class="col-sm-6">         
+      <input id="user_car1_manufactor" class="form-control" name="user[car1_manufactor]" size="30" type="text" value="" placeholder="for example:Jeep,BMW,Benz,ect">
+        </div>
+      </div>
+<br>
+
+     <div class="row row-condensed space-4">
+        <label class="col-sm-3">
+          The model 
+        </label>
+        <div class="col-sm-6">
+          
+      <input id="user_car1_model" class="form-control" name="user[car1_model]" size="30" type="text" value="" placeholder="for example:Patriot,Wrangler,Cherokee,ect">
+        </div>
+      </div>
+<br>
+
+<div class="row row-condensed space-4">
+        <label class="col-sm-3">
+          The years 
+        </label>
+        <div class="col-sm-6">
+             <select class="form-control">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>more than 8</option>
+      </select>
+       	</div>
+   	</div>
+<br>
+
+<div class="row row-condensed space-4">
+        <label class="col-sm-3">
+          The color 
+        </label>
+        <div class="col-sm-6">
+          
+      <input id="user_car1_color" class="form-control" name="user[car1_color]" size="30" type="text" value="" placeholder="for example:Pure white,Navy blue,Sliver,ect">
+        </div>
+      </div>
+<br>
+
+ <div class="row row-condensed space-4">
+<p><small><strong>&nbsp &nbspCar 2</strong></small></p>
+ <label class="col-sm-3">
+          The manuacturer
+      </label>
+     	 <div class="col-sm-6">         
+      <input id="user_car2_manufactor" class="form-control" name="user[car2_manufactor]" size="30" type="text" value="" placeholder="for example:Jeep,BMW,Benz,ect">
+        </div>
+      </div>
+<br>
+
+     <div class="row row-condensed space-4">
+        <label class="col-sm-3">
+          The model 
+        </label>
+        <div class="col-sm-6">
+          
+      <input id="user_car2_model" class="form-control" name="user[car2_model]" size="30" type="text" value="" placeholder="for example:Patriot,Wrangler,Cherokee,ect">
+        </div>
+      </div>
+<br>
+
+<div class="row row-condensed space-4">
+        <label class="col-sm-3">
+          The years 
+        </label>
+        <div class="col-sm-6">
+             <select class="form-control">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>more than 8</option>
+      </select>
+       	</div>
+   	</div>
+<br>
+
+<div class="row row-condensed space-4">
+        <label class="col-sm-3">
+          The color 
+        </label>
+        <div class="col-sm-6">
+          
+      <input id="user_car2_color" class="form-control" name="user[car2_color]" size="30" type="text" value="" placeholder="for example:Pure white,Navy blue,Sliver,ect">
+        </div>
+      </div>
+<br>
+
+<div class="row row-condensed space-4">
+        <label class="col-sm-3">
+        Describe more details about your car(s)</label>
+ <div class="col-sm-6">
+      <form role="form">
+        <div class="form-group">
+          <textarea class="form-control" rows="4" placeholder="Enter more information about your car(s)"></textarea>
+        </div>
+      </form>
+      </div>
+      </div>
+     </div>
+
+  <div class="panel panel-primary">
+      <div class="panel-heading"> <strong>Preference information</strong></div>
+     <br> <h4><small>&nbsp &nbsp Note:If you are a passenger,please complete this part.</small></h4>
+      <div class="panel-body">
+      
+      <div class="row row-condensed space-4">
+        <label class="col-sm-3" >
+          The <abbr title="choose the preference gender of your carpool driver">gender of the driver</abbr>
+        </label>
+        <div class="col-sm-6"> 
+      <div class="select">
+        <select id="driver_sex" name="perference[sex]"><option value="" selected="selected">Gender</option>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+<option value="Other">Other</option></select>
+      </div>
+     </div>
+    </div>
+   <br>
+
+   <div class="row row-condensed space-4">
+        <label class="col-sm-3">
+          <abbr title="choose the preference car modle for your trips">The modle </abbr>
+        </label>
+        <div class="col-sm-6">
+          
+      <input id="preference_model" class="form-control" name="perference[model]" size="30" type="text" value="" placeholder="for example:SUV,Sedan,Trunk,ect">
+        </div>
+      </div>
+<br>
+</div>
+</div>
+  </div>
+
+  <br>
+  <br>
+  <button type="submit" class="btn btn-primary btn-md"">Save</button>
+  </div>
+
+     
+<footer>
+
+</footer>
+
+

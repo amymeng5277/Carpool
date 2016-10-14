@@ -56,8 +56,9 @@ class NavbarController {
 
 
 class ModalInstanceCtrl {
-  constructor($scope, $modalInstance, items) {
+  constructor($scope, $state, $modalInstance, items) {
     this.$scope = $scope;
+    this.$state = $state;
     this.$modalInstance = $modalInstance;
     this.items = items;
     this.$scope.selected = {
@@ -128,6 +129,7 @@ class ModalInstanceCtrl {
 
   ok() {
     this.$modalInstance.close(this.$scope.selected.item);
+    this.$state.go('trip');
   }
   cancel (){
     this.$modalInstance.dismiss('cancel');

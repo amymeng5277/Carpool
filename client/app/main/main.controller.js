@@ -8,6 +8,11 @@ class MainController {
     this.$http = $http;
     this.awesomeThings = [];
 
+    $scope.slides = [
+      {image: 'assets/images/ezcarpool.png', text: 'The Best and Easy Way!'},
+      {image: 'assets/images/ezcarpool.png', text: 'Sing in Right Now!'}
+    ];
+
     $http.get('/api/things').then(response => {
       this.awesomeThings = response.data;
       socket.syncUpdates('thing', this.awesomeThings);

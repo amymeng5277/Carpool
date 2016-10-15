@@ -7,6 +7,7 @@ angular.module('uwece651f16NewApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngAnimate',
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',

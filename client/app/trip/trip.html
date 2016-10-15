@@ -16,10 +16,11 @@
     <tbody>
     <tr ng-repeat="trip in trips">
       <td>Waterloo
-        <div ng-show="trip.open">201 King Street</div>
+        <div ng-show="trip.open" class="animate-show">201 King Street</div>
+
       </td>
       <td>Toronto
-        <div ng-show="trip.open">3422 College Street</div>
+        <div ng-show="trip.open" class="animate-show">3422 College Street</div>
       </td>
       <td>
         <button type="button" class="transparent-btn">
@@ -27,14 +28,14 @@
         </button>
       </td>
       <td>2/13/2016 4:00 PM
-        <div ng-show="trip.open">In 48h 45m</div>
+        <div ng-show="trip.open" class="animate-show">In 48h 45m</div>
       </td>
       <td>3/4
-        <div ng-show="trip.open"><img class="car-seats" src="assets/images/car.png"></div>
+        <div ng-show="trip.open" class="animate-show"><img class="car-seats" src="assets/images/car.png"></div>
       </td>
       <td><i class="fa fa-female"></i> <i class="fa fa-music"></i> <i class="fa fa-wheelchair"></i></td>
       <td>Sedan
-        <div ng-show="trip.open">2016 Honda Civic</div>
+        <div ng-show="trip.open" class="animate-show">2016 Honda Civic</div>
       </td>
       <td>
         <button type="button" ng-show="!trip.open" ng-click="trip.open=!trip.open" class="transparent-btn">

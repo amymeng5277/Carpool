@@ -1,8 +1,54 @@
 <navbar></navbar>
 <div class="container">
-  <div class="jumbotron">
-    <h1>Trips</h1>
-  </div>
+  <table class="table margin-top-20">
+    <thead>
+    <tr>
+      <th>Pick-up</th>
+      <th>Drop-off</th>
+      <th>Map</th>
+      <th>Time</th>
+      <th>Seats</th>
+      <th>Preferences</th>
+      <th>Vehicle</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="trip in trips">
+      <td>Waterloo
+        <div ng-show="trip.open">201 King Street</div>
+      </td>
+      <td>Toronto
+        <div ng-show="trip.open">3422 College Street</div>
+      </td>
+      <td>
+        <button type="button" class="transparent-btn">
+          <span class="glyphicon glyphicon-map-marker"></span>
+        </button>
+      </td>
+      <td>2/13/2016 4:00 PM
+        <div ng-show="trip.open">In 48h 45m</div>
+      </td>
+      <td>3/4
+        <div ng-show="trip.open"><img class="car-seats" src="assets/images/car.png"></div>
+      </td>
+      <td><i class="fa fa-female"></i> <i class="fa fa-music"></i> <i class="fa fa-wheelchair"></i></td>
+      <td>Sedan
+        <div ng-show="trip.open">2016 Honda Civic</div>
+      </td>
+      <td>
+        <button type="button" ng-show="!trip.open" ng-click="trip.open=!trip.open" class="transparent-btn">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+        </button>
+        <button type="button" ng-show="trip.open" ng-click="trip.open=!trip.open" class="transparent-btn">
+          <span class="glyphicon glyphicon-chevron-up"></span>
+        </button>
+        <button type="button" class="btn btn-xs btn-join btn-warning" ng-show="!trip.completed">Edit</button>
+        <button type="button" class="btn btn-xs btn-join btn-success" ng-show="trip.completed">Done</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 
 </div>
 

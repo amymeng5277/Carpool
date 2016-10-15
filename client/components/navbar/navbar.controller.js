@@ -9,7 +9,7 @@ class NavbarController {
     'title': 'Profile',
     'state': 'profile'
   }, {
-    'title': 'Trip',
+    'title': 'My Trip',
     'state': 'trip'
   }, {
     'title': 'Search',
@@ -117,7 +117,7 @@ class ModalInstanceCtrl {
     if (mode === 'day') {
       var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
       for (var i = 0; i < this.$scope.events.length; i++) {
-        var currentDay = new Date(this.$scope.events[i].date).setHours(0, 0, 0, 0);
+        var currentDay = new Date(this.$scope.events[i].date);
         if (dayToCheck === currentDay) {
           return this.$scope.events[i].status;
         }

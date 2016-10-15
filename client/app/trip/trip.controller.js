@@ -8,6 +8,17 @@
       this.$http = $http;
       this.$scope = $scope;
       this.awesomeThings = [];
+      $scope.trips = [
+        {open: false, completed: false},
+        {open: false, completed: false},
+        {open: false, completed: true},
+        {open: false, completed: true},
+        {open: false, completed: true},
+        {open: false, completed: true},
+        {open: false, completed: true},
+        {open: false, completed: true},
+        {open: false, completed: true}
+      ];
 
       $http.get('/api/things').then(response => {
         this.awesomeThings = response.data;

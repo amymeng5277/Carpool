@@ -18,7 +18,7 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="" ng-click="nav.open('lg')">Post trip</a></li>
+        <li><a href="" ng-click="nav.open()">Post trip</a></li>
         <li><a ui-sref="search">Search trip</a></li>
         <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Sign up</a></li>
         <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Login</a></li>
@@ -35,114 +35,102 @@
     <h3 class="modal-title">Post a Trip</h3>
   </div>
   <div class="modal-body">
-
-    <h4><p class="bg-primary"><strong>Trip indormation</strong></p></h4>
-    <blockquote>
-      <div class="row row-condensed space-4">
-        <label class="col-sm-2" for="destination">
-          Destination
-        </label>
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="trip_destination" class="col-sm-2 control-label">Destination</label>
 
         <div class="col-sm-10">
-          <input id="trip_destination" name="user[first_name]" size="30" type="text" value="">
+          <p class="input-group">
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default">
+                <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
+              </button>
+            </span>
+            <input type="text" class="form-control" id="trip_destination" placeholder="Where is your trip destination?">
+          </p>
         </div>
       </div>
-      <br>
-
-      <div class="row row-condensed space-4">
-        <label class="col-sm-2" for="pick_up_location">
-          Pick up location
-        </label>
+      <div class="form-group">
+        <label for="pick_up_location" class="col-sm-2 control-label">Pick Up</label>
 
         <div class="col-sm-10">
-          <input id="pick_up_location" name="user[last_name]" size="30" type="text" value="">
+          <p class="input-group">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default">
+                  <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
+                </button>
+              </span>
+            <input type="text" class="form-control" id="pick_up_location" placeholder="Where will you pick up your customer?">
+          </p>
         </div>
       </div>
-      <br>
 
-      <div class="row row-condensed space-4">
-        <label class="col-sm-2" for="pick_up_date">
-          Pick up date <i class="icon icon-lock icon-ebisu" data-behavior="tooltip" aria-label="Private"></i>
-        </label>
+      <div class="form-group">
+        <label for="pick_up_date" class="col-sm-2 control-label">Pick Up Time</label>
 
-
-        <div>
-          <div class="row">
-            <div class="col-md-3">
-              <p class="input-group">
-                <input type="text"
-                       class="form-control"
-                       datepicker-popup
-                       ng-model="pickup_dt"
-                       is-open="status_pickup.opened"
-                       min-date="minDate"
-                       max-date="maxDate"
-                       datepicker-options="dateOptions"
-                       date-disabled="modal.disabled(date, mode)"
-                       ng-required="true" close-text="Close"/>
+        <div class="col-sm-10">
+          <p class="input-group">
+            <input type="text"
+                   id="pick_up_date"
+                   class="form-control"
+                   datepicker-popup
+                   ng-model="pickup_dt"
+                   is-open="status_pickup.opened"
+                   min-date="minDate"
+                   max-date="maxDate"
+                   datepicker-options="dateOptions"
+                   date-disabled="modal.disabled(date, mode)"
+                   ng-required="true" close-text="Close"
+                   placeholder="When will you pick up your customer?"/>
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="modal.open($event, 'pickup')">
                   <i class="glyphicon glyphicon-calendar"></i>
                 </button>
               </span>
-              </p>
-            </div>
-          </div>
+          </p>
         </div>
       </div>
-      <br>
 
-      <div class="row row-condensed space-4">
-        <label class="col-sm-2" for="arrive_date">
-          Arrive date
-        </label>
+      <div class="form-group">
+        <label for="arrive_date" class="col-sm-2 control-label">Arrive Time</label>
 
-        <div>
-          <div class="row">
-            <div class="col-md-3">
-              <p class="input-group">
-                <input type="text"
-                       class="form-control"
-                       datepicker-popup
-                       ng-model="arrive_dt"
-                       is-open="status_arrive.opened"
-                       min-date="minDate"
-                       max-date="maxDate"
-                       datepicker-options="dateOptions"
-                       date-disabled="modal.disabled(date, mode)"
-                       ng-required="true" close-text="Close"/>
+        <div class="col-sm-10">
+          <p class="input-group">
+            <input type="text"
+                   id="arrive_date"
+                   class="form-control"
+                   datepicker-popup
+                   ng-model="arrive_dt"
+                   is-open="status_arrive.opened"
+                   min-date="minDate"
+                   max-date="maxDate"
+                   datepicker-options="dateOptions"
+                   date-disabled="modal.disabled(date, mode)"
+                   ng-required="true" close-text="Close"
+                   placeholder="When will you pick up your customer?"/>
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="modal.open($event, 'arrive')">
                   <i class="glyphicon glyphicon-calendar"></i>
                 </button>
               </span>
-              </p>
-            </div>
-          </div>
+          </p>
         </div>
       </div>
-      <br>
 
-      <div class="row row-condensed space-4">
-        <label class="col-sm-2" for="user_last_name">
-          Car model
-        </label>
+      <div class="form-group">
+        <label for="car_model" class="col-sm-2 control-label">Car Model</label>
 
         <div class="col-sm-10">
-
-          <input id="user_carmodle" name="user[carmodle]" size="30" type="text" value="">
+          <input type="text" class="form-control" id="car_model" placeholder="What mode is your car?">
         </div>
       </div>
-      <br>
 
-      <div class="row row-condensed space-4">
-        <label class="col-sm-2" for="user_birthdate">
-          Seats
-        </label>
+      <div class="form-group">
+        <label for="car_seats" class="col-sm-2 control-label">Car Model</label>
 
         <div class="col-sm-10">
           <div class="select">
-            <select id="user_birthdate_2i" name="user[birthdate(2i)]">
+            <select id="car_seats" class="form-control" name="" placeholder="How many seats in your car?">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -153,8 +141,7 @@
           </div>
         </div>
       </div>
-    </blockquote>
-
+    </form>
   </div>
   <div class="modal-footer">
     <button class="btn btn-primary" type="button" ng-click="modal.ok()">Submit</button>

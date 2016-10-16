@@ -2,29 +2,7 @@
 
 <div class="container">
   <div class="jumbotron">
-  <style>
-    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-    .row.content {height: 1500px}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-    
-    /* Set black background color, white text and some padding */
-       
-    
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height: auto;}
-    }
-  </style>
-
+  
     <h1>Profile</h1>
     <br>
 <div class="container-fluid">
@@ -101,8 +79,8 @@
         <class="col-sm-6">
        <form role="form" class="form-inline"> 
        <div class="form-group">
-        <class="select">
-          <select id="user_birthdate_2i" name="user[birthdate(2i)]">
+      
+          <select class="form-control" id="user_birthdate_2i" name="user[birthdate(2i)]">
 <option value="1">January</option>
 <option value="2">February</option>
 <option value="3">March</option>
@@ -110,15 +88,15 @@
 <option value="5">May</option>
 <option value="6">June</option>
 <option value="7">July</option>
-<option value="8">August<option>
+<option value="8">August</option>
 <option value="9">September</option>
 <option value="10">October</option>
 <option value="11">November</option>
 <option value="12">December</option>
 </select>
 
-        <class="select">
-          <select id="user_birthdate_3i" name="user[birthdate(3i)]">
+      
+          <select class="form-control" id="user_birthdate_3i" name="user[birthdate(3i)]">
 <option value="1">1</option>
 <option value="2">2</option>
 <option value="3">3</option>
@@ -152,8 +130,8 @@
 <option value="31">31</option>
 </select>
 
-        <class="select">
-          <select id="user_birthdate_1i" name="user[birthdate(1i)]">
+        
+          <select class="form-control" id="user_birthdate_1i" name="user[birthdate(1i)]">
 <option value="2000">2000</option>
 <option value="1999">1999</option>
 <option value="1998">1998</option>
@@ -260,7 +238,7 @@
       <br>
 
  <div class="row row-condensed space-4">
- <h4><strong> &nbsp Describe your car(s):</h4></p>
+ <h4><strong> &nbsp Describe your car(s):</strong></h4>
  <p><small><strong>&nbsp &nbspCar 1</strong></small></p>
  <label class="col-sm-3">
           The manuacturer
@@ -418,7 +396,6 @@
   <button type="submit" class="btn btn-primary btn-md"">Save</button>
   </div>
 
-     
 <footer>
 
 </footer>

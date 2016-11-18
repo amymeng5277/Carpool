@@ -17,12 +17,12 @@
     </div>
     <div class="col-sm-3">
       <div class="input-group stylish-input-group">
-          <input type="text" class="form-control"  placeholder="Drop-off" >
+          <input type="text" class="form-control"  placeholder="Drop-off" id="dropoff">
           <span class="input-group-addon">  
           </span>
       </div>
       <br>
-      <button type="button" class="btn half-fill">Search <span class="glyphicon glyphicon-search"></span></button>
+      <button type="button" ng-click="doQuery()" class="btn half-fill">Search <span class="glyphicon glyphicon-search"></span></button>
       <button type="button" class="btn half-fill"> Expand Map</button>
     </div>
     <div class="col-sm-6">
@@ -37,7 +37,7 @@
 
   <br>
   <div class="row">
-    <div class="col-sm-12 text-center text-alert">
+    <div class="col-sm-12 text-center text-alert" id="no-matches">
       <p>We couldn't find any matches! Click here to notify you when there's a match!</p>
     </div>
   </div>
@@ -55,7 +55,7 @@
         <th></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id='searchResultTable'>
       <tr id="row1">
         <td>Waterloo<div class="expandDetail">201 King Street</div></td>
         <td>Toronto<div class="expandDetail">3422 College Street</div></td>

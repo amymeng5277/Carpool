@@ -30,7 +30,7 @@ class NavbarController {
     this.$scope.items = ['item1', 'item2', 'item3'];
   }
 
-  open = function (size) {
+  open (size) {
     var _scope = this.$scope;
     var _log = this.$log;
     var modalInstance = this.$modal.open({

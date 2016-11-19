@@ -30,7 +30,7 @@ class NavbarController {
     this.$scope.items = ['item1', 'item2', 'item3'];
   }
 
-  open = function (size) {
+  open (size) {
     var _scope = this.$scope;
     var _log = this.$log;
     var modalInstance = this.$modal.open({
@@ -56,7 +56,9 @@ class NavbarController {
 
 
 class ModalInstanceCtrl {
-  constructor($scope, $state, $modalInstance, items) {
+  new_trip = {};
+
+  constructor($scope, $state, $modalInstance, $http, items) {
     this.$scope = $scope;
     this.$state = $state;
     this.$modalInstance = $modalInstance;
@@ -64,6 +66,7 @@ class ModalInstanceCtrl {
     this.$scope.selected = {
       item: this.items[0]
     };
+    this.$http = $http;
 
     // for calendar
     // for calendar
@@ -128,8 +131,12 @@ class ModalInstanceCtrl {
 
 
   ok() {
-    this.$modalInstance.close(this.$scope.selected.item);
-    this.$state.go('trip');
+    this.$http.post('/api/trips', this.new_trip)
+      .success(response =>{
+        console.log(response);
+        this.$modalInstance.close(this.$scope.selected.item);
+        this.$state.go('trip');
+      });
   }
   cancel (){
     this.$modalInstance.dismiss('cancel');

@@ -44,7 +44,7 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
-  config.vm.synced_folder ".", "/home/vagrant/uwece651f16_js"
+  # config.vm.synced_folder ".", "/home/vagrant/uwece651f16_js"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -72,13 +72,8 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
-    cd uwece651f16_js
-    if [ ! -e 'node_modules' ]; then
-      ln -s /home/vagrant/node_modules node_modules
-    fi
-
-    if [ ! -e 'client/bower_components' ]; then
-      ln -s /home/vagrant/bower_components client/bower_components
+    if [ ! -e /home/vagrant/uwece651f16_js ]; then
+      ln -s /vagrant /home/vagrant/uwece651f16_js
     fi
   SHELL
 end

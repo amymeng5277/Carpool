@@ -25,7 +25,7 @@ module.exports = function(app) {
   // The routing that was done previously doesn't match the API that was specified, so
   // I created dummy ones here that don't actually connect with the DB.
   app.route('/query')
-    .get(function(req, res) {
+    .all(function(req, res) {
       // this does a search based on to, from, and date
       if (req.method == 'GET') {
         var emptyResponse = {
@@ -36,13 +36,13 @@ module.exports = function(app) {
             {
               'pick-up': {
                 'city': 'Waterloo',
-                'address': '201 King Street'
+                'address': '200 Univeristy Avenue'
               },
               'drop-off': {
                 'city': 'Toronto',
                 'address': '3422 College Street'
               },
-              'time': 1479440393,
+              'time': 1485824968,
               'spots': 3,
               'vehicle': {
                 'type': 'Sedan',
@@ -53,9 +53,9 @@ module.exports = function(app) {
               },
               'preferences': [
                 {'pref':'female'},
-                {'pref':'music'},
-                {'pref':'handicap'}
-              ]
+                {'pref':'music'}
+              ],
+              'tripid': 99999
             },
             {
               'pick-up': {
@@ -66,20 +66,21 @@ module.exports = function(app) {
                 'city': 'New Market',
                 'address': '438 Park Ave'
               },
-              'time': 1479440393,
-              'spots': 3,
+              'time': 1483214788,
+              'spots': 1,
               'vehicle': {
                 'type': 'Sedan',
-                'make': 'Honda',
-                'model': 'Civic',
-                'year': 2016,
-                'seats': 4
+                'make': 'Subaru',
+                'model': 'WRX',
+                'year': 2005,
+                'seats': 5
               },
               'preferences': [
                 {'pref':'female'},
                 {'pref':'music'},
-                {'pref':'handicap'}
-              ]
+                {'pref':'wheelchair'}
+              ],
+              'tripid': 21321
             }
           ]
         };
@@ -90,10 +91,25 @@ module.exports = function(app) {
           res.write(JSON.stringify(dummyResponse));
         }
         res.end();
+
+      // this is when no search exists, so create an entry in the database
       } else if (req.method == 'POST') {
-        
+        console.log("Adding to the query database: pickup: " + req.query.pickup + " dropoff: " + req.query.dropoff + " time: " + req.query.time);
+        console.log("Will notify the user when there is an available ride for him.");
       }
     });
+
+  app.route('/tripid')
+    .all(function(req, res) {
+      // posting a trip request 
+      if (req.method == 'POST') {
+        if (req.query.tripid != '') {
+          console.log('Adding user to tripid: ' + req.query.tripid);
+        } else {
+          console.log('Creating a trip');          
+        }
+      }
+  });
 
   // ---END---
 

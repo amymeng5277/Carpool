@@ -1,5 +1,13 @@
-#no-matches {
+#no-matches, #query-saved {
     display: none;
+}
+button.btn {
+    margin-bottom: 15px;
+}
+p.error {
+    color: #ff3232;
+    display: none;
+    font-weight: bold;
 }
 .stylish-input-group .input-group-addon{
     background: white !important;
@@ -33,18 +41,23 @@ table {
     table-layout: fixed;
 }
 button.btn-join {
-    margin: -5px 1px 1px 8px;
+    margin: 0px 1px 1px 8px;
     min-width: 50px;
     border: none;
 }
 button.btn-join:focus {outline:0;}
-.text-alert {
-    background-color: #ff3232;
+.text-alert, .text-success {
     padding: 2px;
     height: 1.8em;
     border-radius: 10px;
     color: white;
+}
+.text-alert {
+    background-color: #ff3232;
     cursor: pointer;
+}
+.text-success {
+    background-color: #5cb85c;
 }
 .half-fill {
     width: 45%

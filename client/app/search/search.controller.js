@@ -17,22 +17,46 @@ class SearchController {
     //   socket.unsyncUpdates('thing');
     // });
 
+    function padLeft(str, places, pad) {
+      while (str.length < places) {
+        str = pad + str;
+      }
+      return str;
+    }
+
     function createResultEntry(data, rowNumber) {
+      var depart = new Date(0);
+      depart.setUTCSeconds(data['time']);
+      var strDepart = (depart.getMonth()+1).toString() +'/'+ depart.getDate().toString() +'/'+ depart.getFullYear().toString();
+      if (depart.getHours() >= 12) {
+        strDepart += '<br> ' + (depart.getHours()-12).toString();
+        strDepart += ':' + padLeft(depart.getMinutes().toString(), 2, '0');
+        strDepart += ' PM';
+      } else {
+        strDepart += '<br> ' + depart.getHours().toString();
+        strDepart += ':' + padLeft(depart.getMinutes().toString(), 2, '0');
+        strDepart += ' AM';
+      }
+
+      var strPref = ''
+      for (var idx = 0; idx < data['preferences'].length; idx++) {
+        strPref += ' <i class="fa fa-' + data['preferences'][idx]['pref'] + '"></i> ';
+      }
+
       var table = $("#searchResultTable");
       var row = $('<tr>', {id: 'row'+rowNumber});
-      var col1 = $('<td>'+data['pick-up']['city']+'<div class="expandDetail">'+data['pick-up']['address']+'</div></td>');
-      var col2 = $('<td>'+data['drop-off']['city']+'<div class="expandDetail">'+data['drop-off']['address']+'</div></td>');
-      var col3 = $('<td><button type="button" class="transparent-btn"><span class="glyphicon glyphicon-map-marker"></span></button></td>');
-      var col4 = $('<td>2/13/2016 4:00 PM<div class="expandDetail">In 48h 45m</div></td>');
-      var col5 = $('<td>3/4<div class="expandDetail"><img class="car-seats" src="assets/images/car.png"></div></td>');
-      var col6 = $('<td><i class="fa fa-female"></i> <i class="fa fa-music"></i> <i class="fa fa-wheelchair"></i></td>');
-
+      var col1 = $('<td><p class="pcity">'+data['pick-up']['city']+'</p><div class="expandDetail paddress">'+data['pick-up']['address']+'</div></td>');
+      var col2 = $('<td><p class="dcity">'+data['drop-off']['city']+'</p><div class="expandDetail daddress">'+data['drop-off']['address']+'</div></td>');
+      var col3 = $('<td><button type="button" class="transparent-btn" id="locate"><span class="glyphicon glyphicon-map-marker"></span></button></td>');
+      var col4 = $('<td>'+strDepart+'</td>');
+      var col5 = $('<td>'+data['spots']+'/'+data['vehicle']['seats']+'<div class="expandDetail"><img class="car-seats" src="assets/images/car.png"></div></td>');
+      var col6 = $('<td>'+strPref+'</td>');
       var col7 = $('<td>'+data['vehicle']['type']+'<div class="expandDetail">'+data['vehicle']['make']+' '+data['vehicle']['model']+' '+data['vehicle']['year']+'</div></td>')
       var col8 = $('<td>\
-        <button type="button" ng-click="toggleInfo('+rowNumber+')" class="transparent-btn">\
+        <button type="button" ng-click="toggleInfo('+rowNumber+')" class="transparent-btn" id="expand">\
           <span id="arrow" class="glyphicon glyphicon-chevron-down"></span>\
         </button>\
-        <button type="button" class="btn btn-xs btn-join">Join</button>\
+        <button type="button" class="btn btn-sm btn-join btn-success" id="join-'+data['tripid']+'">Join</button>\
       </td>');
 
       row.append(col1).append(col2).append(col3).append(col4).append(col5).append(col6).append(col7).append(col8);
@@ -45,7 +69,7 @@ class SearchController {
       }
     }
 
-    $scope.doQuery = function() {
+    $scope.doQuery = function(operation) {
       // clear previous search results
       $("[id^=row]").remove();
 
@@ -54,45 +78,63 @@ class SearchController {
       pickup = pickup.split(' ').join('+');
       var dropoff = $('#dropoff').val();
       dropoff = dropoff.split(' ').join('+');
-      var url = "http://localhost:9000/query";
-      url += "?pickup=" + pickup + "&dropoff=" + dropoff;
+      var time = $('#datetime').val();
+      time = time.split(' ').join('+');
+
+      // double check that all fields are entered
+      if (pickup == '' || dropoff == '' || time == '') {
+        $('.error').show();
+        return;
+      } else {
+        $('.error').hide();
+      }
+
+      var url = "/query?pickup=" + pickup + "&dropoff=" + dropoff + "&time=" + time;
       //console.log(url);
 
-      // restful call to get search results
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", url, false);
-      xhr.send();
+      $('#query-saved').hide();
 
-      if (xhr.status == 200) {
-        var result = JSON.parse(xhr.response);
-        if (result['result'].length == 0) {
-          $('#no-matches').show();
-          return;
+      // restful call to get search results
+      if (operation == 'GET') {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, false);
+        xhr.send();
+
+        if (xhr.status == 200) {
+          var result = JSON.parse(xhr.response);
+          if (result['result'].length == 0) {
+            $('#no-matches').show();
+            return;
+          }
+          $('#no-matches').hide();
+          populateSearchTable(result);
         }
-        $('#no-matches').hide();
-        populateSearchTable(result);
+
+      // post a query for notification when one exists
+      } else if (operation == 'POST') {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.send();
+
+        if (xhr.status == 0) {
+          $('#no-matches').hide();
+          $("#query-saved").show();
+        }
+      }
+    };
+
+    $scope.expandMap = function() {
+      var map = $("#map");
+      if (map.height() < 400) {
+        map.height(400);
+      } else {
+        map.height(100);
       }
     };
 
     $scope.toggleInfo = function(row) {
-      // handle the arrow and determine if expanding or minimizing
       var rowElement = $("#row" + row);
-      var arrowElement = $(rowElement.find("#arrow"));
-      if (arrowElement.hasClass("glyphicon-chevron-down")) { 
-        arrowElement.removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
-        var expanding = true;
-      } else {
-        arrowElement.removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
-        var expanding = false;
-      }
-
-      // handle the content to toggle
-      var toToggle = $(rowElement.find(".expandDetail"));
-      console.log(toToggle);
-      for (var content = 0; content < toToggle.length; content++) {
-        $(toToggle[content]).toggle();
-        console.log(toToggle[content]);
-      }
+      toggleDetails(rowElement);
     };
   }
 

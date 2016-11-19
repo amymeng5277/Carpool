@@ -9,10 +9,13 @@
           </span>
       </div>
       <br>
-      <div class="input-group stylish-input-group">
-          <input type="text" class="form-control"  placeholder="Date" >
-          <span class="input-group-addon">  
-          </span>
+      <div class="form-group">
+          <div class='input-group date' id='datetimepicker'>
+              <input type='text' class="form-control" placeholder="Date and Time" id="datetime"/>
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+          </div>
       </div>
     </div>
     <div class="col-sm-3">
@@ -22,11 +25,14 @@
           </span>
       </div>
       <br>
-      <button type="button" ng-click="doQuery()" class="btn half-fill">Search <span class="glyphicon glyphicon-search"></span></button>
-      <button type="button" class="btn half-fill"> Expand Map</button>
+      <button type="button" ng-click="doQuery('GET')" class="btn half-fill">Search <span class="glyphicon glyphicon-search"></span></button>
+      <button type="button" ng-click="expandMap()" class="btn half-fill"> Expand Map</button>
+      <br>
+      <p class='error'>Missing search fields.</p>
     </div>
     <div class="col-sm-6">
       <iframe
+      id="map"
       width="100%"
       height="100"
       frameborder="0" style="border:0"
@@ -34,11 +40,14 @@
       </iframe>
     </div>
   </div>
-
+  <p>DELETE ME -- Search will randomly return 0 or 2 results for testing purposes -- DELETE ME</p>
   <br>
   <div class="row">
-    <div class="col-sm-12 text-center text-alert" id="no-matches">
+    <div class="col-sm-12 text-center text-alert" id="no-matches" ng-click="doQuery('POST')">
       <p>We couldn't find any matches! Click here to notify you when there's a match!</p>
+    </div>
+    <div class="col-sm-12 text-center text-success" id="query-saved">
+      <p>Query saved! We will notify you when there's a match!</p>
     </div>
   </div>
 
@@ -56,11 +65,15 @@
       </tr>
     </thead>
     <tbody id='searchResultTable'>
+
+      <!--
+      EXAMPLE ROW, this is dynamically created afterwards
+
       <tr id="row1">
         <td>Waterloo<div class="expandDetail">201 King Street</div></td>
         <td>Toronto<div class="expandDetail">3422 College Street</div></td>
         <td>
-          <button type="button" class="transparent-btn">
+          <button type="button" class="transparent-btn" id="locate">
             <span class="glyphicon glyphicon-map-marker"></span>
           </button>
         </td>
@@ -69,60 +82,20 @@
         <td><i class="fa fa-female"></i> <i class="fa fa-music"></i> <i class="fa fa-wheelchair"></i></td>
         <td>Sedan<div class="expandDetail">2016 Honda Civic</div></td>
         <td>
-          <button type="button" ng-click="toggleInfo(1)" class="transparent-btn">
+          <button type="button" ng-click="toggleInfo(1)" class="transparent-btn" id="expand">
             <span id="arrow" class="glyphicon glyphicon-chevron-down"></span>
           </button>
           <button type="button" class="btn btn-xs btn-join">Join</button>
         </td>
       </tr>
-      <tr id="row2">
-        <td>Waterloo<div class="expandDetail">201 King Street</div></td>
-        <td>Toronto<div class="expandDetail">3422 College Street</div></td>
-        <td>
-          <button type="button" class="transparent-btn">
-            <span class="glyphicon glyphicon-map-marker"></span>
-          </button>
-        </td>
-        <td>2/13/2016 4:00 PM<div class="expandDetail">In 48h 45m</div></td>
-        <td>3/4<div class="expandDetail"><img class="car-seats" src="assets/images/car.png"></div></td>
-        <td><i class="fa fa-female"></i> <i class="fa fa-music"></i> <i class="fa fa-wheelchair"></td>
-        <td>Sedan<div class="expandDetail">2016 Honda Civic</div></td>
-        <td>
-          <button type="button" ng-click="toggleInfo(2)" class="transparent-btn">
-            <span id="arrow" class="glyphicon glyphicon-chevron-down"></span>
-          </button>
-          <button type="button" class="btn btn-xs btn-join">Join</button>
-        </td>
-      </tr>
-      <tr id="row3">
-        <td>Waterloo<div class="expandDetail">201 King Street</div></td>
-        <td>Toronto<div class="expandDetail">3422 College Street</div></td>
-        <td>
-          <button type="button" class="transparent-btn">
-            <span class="glyphicon glyphicon-map-marker"></span>
-          </button>
-        </td>
-        <td>2/13/2016 4:00 PM<div class="expandDetail">In 48h 45m</div></td>
-        <td>3/4<div class="expandDetail"><img class="car-seats" src="assets/images/car.png"></div></td>
-        <td><i class="fa fa-female"></i> <i class="fa fa-music"></i> <i class="fa fa-wheelchair"></td>
-        <td>Sedan<div class="expandDetail">2016 Honda Civic</div></td>
-        <td>
-          <button type="button" ng-click="toggleInfo(3)" class="transparent-btn">
-            <span id="arrow" class="glyphicon glyphicon-chevron-down"></span>
-          </button>
-          <button type="button" class="btn btn-xs btn-join">Join</button>
-        </td>
-      </tr>
+      -->
+      
     </tbody>
   </table>
 </div>
 
 <script>
-function initMap() {
-  var input = document.getElementById('pickup');
-  var autocomplete = new google.maps.places.Autocomplete(input);
-  var infoWindow = new google.maps.InfoWindow();
-  autocomplete.addListener('place_changed', function(){
+function placeChangedCallback (input, autocomplete, infoWindow) {
     infoWindow.close();
     var place = autocomplete.getPlace();
     var address = "";
@@ -133,11 +106,77 @@ function initMap() {
         (place.address_components[2] && place.address_components[2].short_name || '')
       ].join(' ');
     }
-
     input.setAttribute('place_id', place.id);
     infoWindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-  });
 }
+
+function initMap() {
+  var pickup = document.getElementById('pickup');
+  var dropoff = document.getElementById('dropoff');
+  var autoPickup = new google.maps.places.Autocomplete(pickup);
+  var autoDropoff = new google.maps.places.Autocomplete(dropoff);
+  var infoWindow = new google.maps.InfoWindow();
+  autoPickup.addListener('place_changed', placeChangedCallback(pickup, autoPickup, infoWindow));
+  autoDropoff.addListener('place_changed', placeChangedCallback(dropoff, autoDropoff, infoWindow));
+}
+
+$('#datetimepicker').datetimepicker();
+
+
+function toggleDetails (rowElement) {
+  var arrowElement = $(rowElement.find("#arrow"));
+  if (arrowElement.hasClass("glyphicon-chevron-down")) { 
+    arrowElement.removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
+    var expanding = true;
+  } else {
+    arrowElement.removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+    var expanding = false;
+  }
+
+  // handle the content to toggle
+  var toToggle = $(rowElement.find(".expandDetail"));
+  //console.log(toToggle);
+  for (var content = 0; content < toToggle.length; content++) {
+    $(toToggle[content]).toggle();
+    //console.log(toToggle[content]);
+  }
+}
+
+$('body').on("click", "[id^=join-]", function () {
+  var tripid = $(this).attr('id').split('-')[1];
+  var userid = 0; // TODO
+
+  var url = '/tripid?tripid=' + tripid + '&userid=' + userid;
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  xhr.send();
+
+  if (xhr.status == 0) {
+    window.location.href = "/trip";
+  }
+});
+
+$('body').on("click", "#expand", function () {
+  toggleDetails($(this).closest('[id^=row]'));
+});
+
+$('body').on("click", "#locate", function () {
+  var row = $(this).closest('[id^=row]');
+  var dropoff = row.find(".daddress").html() + " " + row.find(".dcity").html();
+  dropoff = dropoff.split(' ').join('+');
+  var pickup = row.find(".paddress").html() + " " + row.find(".pcity").html();
+  pickup = pickup.split(' ').join('+');
+  var url = "https://www.google.com/maps/embed/v1/directions";
+  url += "?key=AIzaSyA-S7NFs0U7prOtOHVF558VSL51qOlOmd0";
+  url += "&origin=" + pickup;
+  url += "&destination=" + dropoff;
+  url += "&avoid=tolls|highways";
+  //console.log(url);
+
+  var map = $('#map');
+  map.attr('src', url);
+});
+
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqEKnuKtS4dpk7wHA4feI0j90LrDeJY_U&libraries=places&callback=initMap" async defer></script>

@@ -136,13 +136,15 @@ Vehicle.sync()
       maker: 'BMW',
       model: 'X1',
       seat: '4',
-      driverId: 10
+      driverId: 10,
+      color: 'White'
     }, {
       _id: 2,
       maker: 'BMW',
       model: 'X3',
       seat: '4',
-      driverId: 11
+      driverId: 11,
+      color: 'Blue'
     }]).then(function () {
       logger.info('finished populating vehicles!');
     });

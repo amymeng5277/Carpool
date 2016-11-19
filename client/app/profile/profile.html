@@ -37,7 +37,7 @@
           First Name </label>
       	<div class="col-sm-6">
           
-      <input id="user_first_name" class="form-control" name="user[first_name]" size="30" type="text" value="" placeholder="Enter first name"> 
+      <input id="user_first_name" class="form-control" name="user[first_name]" size="30" type="text" value="" ng-model = "profile.currentUser.fname" placeholder="Enter first name"> 
       	</div>
 	  </div>
       <br>
@@ -48,7 +48,7 @@
         </label>
         <div class="col-sm-6">
           
-      <input id="user_last_name" class="form-control" name="user[last_name]" size="30" type="text" value="" placeholder="Enter last name">
+      <input id="user_last_name" class="form-control" name="user[last_name]" size="30" type="text" value="" ng-model = "profile.currentUser.lname" placeholder="Enter last name">
         </div>
       </div>
 <br>
@@ -177,7 +177,7 @@
       </label>
       <div class="col-sm-6">
           
-      <input id="user_eamil" class="form-control" name="user[email]" size="30" type="text" value="" placeholder="for example: 123@gmail.com"> 
+      <input id="user_eamil" class="form-control" name="user[email]" size="30" type="text" value="" ng-model = "profile.currentUser.email" placeholder="for example: 123@gmail.com"> 
        	</div>
 	</div>
       <br>
@@ -219,31 +219,14 @@
 	</div>
       <br>
 
-   <div class="row row-condensed space-4">
-    <div class="form-group">
-      <label class="col-sm-3">
-          The number of the your cars
-      </label>
-      <div class="col-sm-6">
-      <select class="form-control" id="sel1">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>more than 3</option>
-      </select>
-      </div>
-	</div>
-   </div>
-      <br>
-
  <div class="row row-condensed space-4">
  <h4><strong> &nbsp Describe your car(s):</strong></h4>
  <p><small>&nbsp &nbspCar 1</small></p>
  <label class="col-sm-3">
-          The manuacturer
+          The manufacturer
       </label>
      	 <div class="col-sm-6">         
-      <input id="user_car1_manufactor" class="form-control" name="user[car1_manufactor]" size="30" type="text" value="" placeholder="for example:Jeep,BMW,Benz,ect">
+      <input id="user_car1_manufactor" class="form-control" name="user[car1_manufactor]" size="30" type="text" ng-model="profile.myVehicle1.maker" placeholder="for example:Jeep,BMW,Benz,ect">
         </div>
       </div>
 <br>
@@ -254,26 +237,23 @@
         </label>
         <div class="col-sm-6">
           
-      <input id="user_car1_model" class="form-control" name="user[car1_model]" size="30" type="text" value="" placeholder="for example:Patriot,Wrangler,Cherokee,ect">
+      <input id="user_car1_model" class="form-control" name="user[car1_model]" size="30" type="text" ng-model="profile.myVehicle1.model" placeholder="for example:Patriot,Wrangler,Cherokee,ect">
         </div>
       </div>
 <br>
 
 <div class="row row-condensed space-4">
         <label class="col-sm-3">
-          The years 
+          The seats 
         </label>
         <div class="col-sm-6">
-             <select class="form-control">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>more than 8</option>
+             <select class="form-control" ng-model="profile.myVehicle1.seat">
+        <option ng-selected="profile.myVehicle1.seat==2" value="2">2</option>
+        <option ng-selected="profile.myVehicle1.seat==3" value="3">3</option>
+        <option ng-selected="profile.myVehicle1.seat==4" value="4">4</option>
+        <option ng-selected="profile.myVehicle1.seat==5" value="5">5</option>
+        <option ng-selected="profile.myVehicle1.seat==6" value="6">6</option>
+        <option ng-selected="profile.myVehicle1.seat==7" value="7">7</option>
       </select>
        	</div>
 </div>
@@ -285,7 +265,7 @@
         </label>
         <div class="col-sm-6">
           
-      <input id="user_car1_color" class="form-control" name="user[car1_color]" size="30" type="text" value="" placeholder="for example:Pure white,Navy blue,Sliver,ect">
+      <input id="user_car1_color" class="form-control" name="user[car1_color]" size="30" type="text" ng-model="profile.myVehicle1.color" placeholder="for example:Pure white,Navy blue,Sliver,ect">
         </div>
 </div>
 <br>
@@ -293,10 +273,10 @@
  <div class="row row-condensed space-4">
 <p><small>&nbsp &nbspCar 2</small></p>
  <label class="col-sm-3">
-          The manuacturer
+          The manufacturer
       </label>
      	 <div class="col-sm-6">         
-      <input id="user_car2_manufactor" class="form-control" name="user[car2_manufactor]" size="30" type="text" value="" placeholder="for example:Jeep,BMW,Benz,ect">
+      <input id="user_car2_manufactor" class="form-control" name="user[car2_manufactor]" size="30" type="text" value="" ng-model="profile.myVehicle2.maker" placeholder="for example:Jeep,BMW,Benz,ect">
         </div>
       </div>
 <br>
@@ -307,29 +287,26 @@
         </label>
         <div class="col-sm-6">
           
-      <input id="user_car2_model" class="form-control" name="user[car2_model]" size="30" type="text" value="" placeholder="for example:Patriot,Wrangler,Cherokee,ect">
+      <input id="user_car2_model" class="form-control" name="user[car2_model]" size="30" type="text" value="" ng-model="profile.myVehicle2.model" placeholder="for example:Patriot,Wrangler,Cherokee,ect">
         </div>
       </div>
 <br>
 
 <div class="row row-condensed space-4">
         <label class="col-sm-3">
-          The years 
+          The seats 
         </label>
         <div class="col-sm-6">
-             <select class="form-control">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>more than 8</option>
+             <select class="form-control" ng-model="profile.myVehicle2.seat">
+        <option ng-selected="profile.myVehicle2.seat==2" value="2">2</option>
+        <option ng-selected="profile.myVehicle2.seat==3" value="3">3</option>
+        <option ng-selected="profile.myVehicle2.seat==4" value="4">4</option>
+        <option ng-selected="profile.myVehicle2.seat==5" value="5">5</option>
+        <option ng-selected="profile.myVehicle2.seat==6" value="6">6</option>
+        <option ng-selected="profile.myVehicle2.seat==7" value="7">7</option>
       </select>
-       	</div>
-   	</div>
+        </div>
+</div>
 <br>
 
 <div class="row row-condensed space-4">
@@ -338,7 +315,7 @@
         </label>
         <div class="col-sm-6">
           
-      <input id="user_car2_color" class="form-control" name="user[car2_color]" size="30" type="text" value="" placeholder="for example:Pure white,Navy blue,Sliver,ect">
+      <input id="user_car2_color" class="form-control" name="user[car2_color]" size="30" type="text" value="" ng-model="profile.myVehicle2.color" placeholder="for example:Pure white,Navy blue,Sliver,ect">
         </div>
       </div>
 <br>
@@ -390,7 +367,7 @@
 <div class = "row">
 	<div class = "col-sm-6">
 		<div class = "button">
-  		<button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
+  		<button class="btn btn-primary btn-lg btn-block" ng-click="profile.save()">Save</button>
  		</div>
  	</div>
  	<div class = "col-sm-6">

@@ -10,7 +10,8 @@ export default function (sequelize, DataTypes) {
     },
     maker: DataTypes.STRING(50),
     model: DataTypes.STRING(100),
-    seat: DataTypes.INTEGER(11)
+    seat: DataTypes.INTEGER(11),
+    color: DataTypes.STRING(50),
   }, {
     timestamps: true,
     classMethods: {

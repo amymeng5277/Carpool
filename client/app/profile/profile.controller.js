@@ -4,9 +4,18 @@
 
 class ProfileController {
 
-  constructor($http, $scope, socket) {
+  constructor($http, $scope, socket, Auth) {
     this.$http = $http;
     this.awesomeThings = [];
+    var _this = this;
+    Auth.getCurrentUser(function(user) {
+      _this.currentUser = user;
+      $http.get('/api/users/'+user._id+'/vehicles')
+        .success(response => {
+          _this.myVehicle1 = response[0];
+          _this.myVehicle2 = response[1];
+        });
+    });
 
     $http.get('/api/things').then(response => {
       this.awesomeThings = response.data;
@@ -16,6 +25,42 @@ class ProfileController {
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
     });
+  }
+
+  save() {
+    if(this.myVehicle1._id) {
+      // update
+      this.$http.put('/api/vehicles/'+this.myVehicle1._id, this.myVehicle1)
+        .success(function(response){
+          console.log(response);
+        });
+
+    } else {
+      // create 
+      console.log(this.currentUser.driver);
+      this.myVehicle1.driverId = this.currentUser.driver._id;
+      this.$http.post('/api/vehicles', this.myVehicle1)
+        .success(function(response){
+          console.log(response);
+        });
+    }
+
+    if(this.myVehicle2._id) {
+      // update
+      this.$http.put('/api/vehicles/'+this.myVehicle2._id, this.myVehicle2)
+        .success(function(response){
+          console.log(response);
+        });
+
+    } else {
+      // create 
+      console.log(this.currentUser.driver);
+      this.myVehicle2.driverId = this.currentUser.driver._id;
+      this.$http.post('/api/vehicles', this.myVehicle2)
+        .success(function(response){
+          console.log(response);
+        });
+    }
   }
 
   addThing() {

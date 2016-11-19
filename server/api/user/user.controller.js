@@ -139,10 +139,16 @@ exports.me = function(req, res, next) {
     attributes: [
       '_id',
       'name',
+      'fname',
+      'lname',
       'email',
       'role',
       'provider'
-    ]
+    ],
+    include: [{
+      model: db.Driver,
+      as: 'driver'
+    }]
   })
     .then(function(user) { // don't ever give out the password or salt
       if (!user) {

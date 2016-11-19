@@ -185,14 +185,18 @@ Trip.sync()
       t_city_id: 2,
       dep_date_f: new Date(),
       dep_date_t: new Date(),
-      driverId: 10
+      driverId: 10,
+      trip_des:"Waterloo",
+      trip_arrive:"Toronto"
     }, {
       _id: 2,
       f_city_id: 2,
       t_city_id: 1,
       dep_date_f: new Date(),
       dep_date_t: new Date(),
-      driverId: 11
+      driverId: 11,
+      trip_des:"Guelph",
+      trip_arrive:"Waterloo"
     }]).then(function () {
       logger.info('finished populating trips!');
     });

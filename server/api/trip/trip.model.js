@@ -12,6 +12,8 @@ export default function (sequelize, DataTypes) {
     t_city_id: DataTypes.INTEGER(11),
     dep_date_f: DataTypes.DATE,
     dep_date_t: DataTypes.DATE,
+    trip_des: DataTypes.STRING(255),
+    trip_arrive: DataTypes.STRING(255)
   }, {
     timestamps: true,
     classMethods: {

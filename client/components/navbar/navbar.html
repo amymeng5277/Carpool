@@ -46,7 +46,7 @@
                 <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
               </button>
             </span>
-            <input type="text" class="form-control" id="trip_destination" placeholder="Where is your trip destination?">
+            <input type="text" class="form-control" id="trip_destination" placeholder="Where is your trip destination?" ng-model="modal.new_trip.trip_des">
           </p>
         </div>
       </div>
@@ -60,7 +60,7 @@
                   <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
                 </button>
               </span>
-            <input type="text" class="form-control" id="pick_up_location" placeholder="Where will you pick up your customer?">
+            <input type="text" class="form-control" id="pick_up_location" placeholder="Where will you pick up your customer?" ng-model="modal.new_trip.trip_arrive">
           </p>
         </div>
       </div>
@@ -74,7 +74,7 @@
                    id="pick_up_date"
                    class="form-control"
                    datepicker-popup
-                   ng-model="pickup_dt"
+                   ng-model="modal.new_trip.dep_date_f"
                    is-open="status_pickup.opened"
                    min-date="minDate"
                    max-date="maxDate"
@@ -100,7 +100,7 @@
                    id="arrive_date"
                    class="form-control"
                    datepicker-popup
-                   ng-model="arrive_dt"
+                   ng-model="modal.new_trip.dep_date_t"
                    is-open="status_arrive.opened"
                    min-date="minDate"
                    max-date="maxDate"
@@ -121,7 +121,7 @@
         <label for="car_model" class="col-sm-2 control-label">Car Model</label>
 
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="car_model" placeholder="What mode is your car?">
+          <input type="text" class="form-control" id="car_model" placeholder="What mode is your car?" ng-model="modal.new_trip.car_mod">
         </div>
       </div>
 
@@ -130,7 +130,7 @@
 
         <div class="col-sm-10">
           <div class="select">
-            <select id="car_seats" class="form-control" name="" placeholder="How many seats in your car?">
+            <select id="car_seats" class="form-control" name="" placeholder="How many seats in your car?" ng-model="modal.car_seat">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>

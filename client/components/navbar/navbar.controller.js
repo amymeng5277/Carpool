@@ -58,7 +58,7 @@ class NavbarController {
 class ModalInstanceCtrl {
   new_trip = {};
 
-  constructor($scope, $state, $modalInstance, $http, items) {
+  constructor($scope, $state, $modalInstance, $http, items, Auth) {
     this.$scope = $scope;
     this.$state = $state;
     this.$modalInstance = $modalInstance;
@@ -67,6 +67,7 @@ class ModalInstanceCtrl {
       item: this.items[0]
     };
     this.$http = $http;
+    this.getCurrentUser = Auth.getCurrentUser;
 
     // for calendar
     // for calendar
@@ -131,8 +132,10 @@ class ModalInstanceCtrl {
 
 
   ok() {
+    var user = this.getCurrentUser();
+    this.new_trip.driverId = user.driver._id;
     this.$http.post('/api/trips', this.new_trip)
-      .success(response =>{
+      .success(response => {
         console.log(response);
         this.$modalInstance.close(this.$scope.selected.item);
         this.$state.go('trip');

@@ -13,7 +13,13 @@ export default function (sequelize, DataTypes) {
     dep_date_f: DataTypes.DATE,
     dep_date_t: DataTypes.DATE,
     trip_des: DataTypes.STRING(255),
-    trip_arrive: DataTypes.STRING(255)
+    trip_arrive: DataTypes.STRING(255),
+    seats_available: DataTypes.INTEGER(11),
+    price: DataTypes.DOUBLE,
+    wheelchair: DataTypes.BOOLEAN,
+    babySeat: DataTypes.BOOLEAN,
+    open: DataTypes.BOOLEAN,
+    completed: DataTypes.BOOLEAN
   }, {
     timestamps: true,
     classMethods: {
@@ -23,6 +29,13 @@ export default function (sequelize, DataTypes) {
           as: 'driver',
           constraints: false,
         });
+
+        this.belongsTo(models.Vehicle, {
+          foreignKey: 'vehicleId',
+          as: 'vehicle',
+          constraints: false,
+        });
+
         this.belongsToMany(models.Passenger, {
           through: 'Ptrips',
           as: 'passengers',

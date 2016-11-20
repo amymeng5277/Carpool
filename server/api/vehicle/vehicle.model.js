@@ -25,6 +25,12 @@ export default function (sequelize, DataTypes) {
           as: 'driver',
           constraints: false,
         });
+
+        this.hasMany(models.Trip, {
+          foreignKey: 'vehicleId',
+          as: 'trips',
+          constraints: false,
+        });
       }
     }
   });

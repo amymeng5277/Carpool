@@ -188,8 +188,15 @@ Trip.sync()
       dep_date_f: new Date(),
       dep_date_t: new Date(),
       driverId: 10,
-      trip_des:"Waterloo",
-      trip_arrive:"Toronto"
+      trip_des: "Waterloo",
+      trip_arrive: "Toronto",
+      vehicleId: 1,
+      seats_available: 3,
+      price: 15.00,
+      wheelchair: true,
+      babySeat: true,
+      open: true,
+      completed: false
     }, {
       _id: 2,
       f_city_id: 2,
@@ -197,8 +204,15 @@ Trip.sync()
       dep_date_f: new Date(),
       dep_date_t: new Date(),
       driverId: 11,
-      trip_des:"Guelph",
-      trip_arrive:"Waterloo"
+      trip_des: "Guelph",
+      trip_arrive: "Waterloo",
+      vehicleId: 2,
+      seats_available: 4,
+      price: 10.00,
+      wheelchair: true,
+      babySeat: false,
+      open: false,
+      completed: true
     }]).then(function () {
       logger.info('finished populating trips!');
     });

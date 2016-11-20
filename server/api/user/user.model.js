@@ -19,6 +19,16 @@ module.exports = function (sequelize, DataTypes) {
     name: DataTypes.STRING,
     fname: DataTypes.STRING(100),
     lname: DataTypes.STRING(100),
+    gender: DataTypes.STRING(100),
+    birthM: DataTypes.STRING(100),
+    birthD: DataTypes.STRING(100),
+    birthY: DataTypes.STRING(100),
+    phone: DataTypes.INTEGER(20),
+    preGender: DataTypes.STRING(100),
+    preModel: DataTypes.STRING(100),
+    preSeat: DataTypes.INTEGER(11),
+    preBabySeat: DataTypes.STRING(50),
+    preWheelchair: DataTypes.INTEGER(11),
     email: {
       type: DataTypes.STRING(100),
       unique: {
@@ -28,6 +38,7 @@ module.exports = function (sequelize, DataTypes) {
         isEmail: true
       }
     },
+      
     role: {
       type: DataTypes.STRING,
       defaultValue: 'user'

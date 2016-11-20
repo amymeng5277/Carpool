@@ -12,6 +12,9 @@ export default function (sequelize, DataTypes) {
     model: DataTypes.STRING(100),
     seat: DataTypes.INTEGER(11),
     color: DataTypes.STRING(50),
+    year: DataTypes.INTEGER(11),
+    wheelchair: DataTypes.INTEGER(11),
+    babySeat: DataTypes.STRING(50),
   }, {
     timestamps: true,
     classMethods: {

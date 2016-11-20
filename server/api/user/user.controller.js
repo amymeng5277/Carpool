@@ -9,6 +9,13 @@ var db = require('../../sqldb');
 
 function validationError(res, statusCode) {
   statusCode = statusCode || 422;
+  statusCode = statusCode || 200;
+  return function() {
+    res.status(statusCode).end();
+  };
+}
+
+function respondWith(res, statusCode) {
   return function(err) {
     res.status(statusCode).json(err);
   }
@@ -21,15 +28,7 @@ function handleError(res, statusCode) {
   };
 }
 
-function respondWith(res, statusCode) {
-  statusCode = statusCode || 200;
-  return function() {
-    res.status(statusCode).end();
-  };
-}
-
-/**
- * Get list of users
+/* Get list of users
  * restriction: 'admin'
  */
 exports.index = function(req, res) {
@@ -65,6 +64,11 @@ exports.create = function(req, res, next) {
     .catch(validationError(res));
 };
 
+exports.createBI = function(req, res) {
+  return User.create(req.body)
+    .then(respondWith(res, 201))
+    .catch(handleError(res));
+};
 /**
  * Get a single user
  */
@@ -126,6 +130,17 @@ exports.changePassword = function(req, res, next) {
     });
 };
 
+exports.upsert = function(req, res) {
+  
+  return User.upsert(req.body, {
+    where: {
+      _id: req.params.id
+    }
+  })
+    .then(respondWith(res))
+    .catch(handleError(res));
+};
+
 /**
  * Get my info
  */
@@ -141,6 +156,16 @@ exports.me = function(req, res, next) {
       'name',
       'fname',
       'lname',
+      'gender',
+      'birthM',
+      'birthD',
+      'birthY',
+      'phone',
+      'preGender',
+      'preModel',
+      'preSeat',
+      'preBabySeat',
+      'preWheelchair',
       'email',
       'role',
       'provider'

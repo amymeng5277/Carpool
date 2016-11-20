@@ -15,9 +15,15 @@ router.get('/:id/vehicles', auth.isAuthenticated(), controller.myVehicles);
 router.get('/:id/:resource', auth.isAuthenticated(), controller.subResource);
 //router.get('/:id/:resource', controller.subResource);
 router.get('/me', auth.isAuthenticated(), controller.me);
+
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
+
+router.put('/:id/basicInfo', auth.isAuthenticated(), controller.upsert); //change basic information
+
 router.get('/:id', auth.isAuthenticated(), controller.show);
 //router.get('/:id', controller.show);
 router.post('/', controller.create);
+
+router.post('/basicInfoCreat', auth.isAuthenticated(), controller.createBI); //creat basic information
 
 module.exports = router;

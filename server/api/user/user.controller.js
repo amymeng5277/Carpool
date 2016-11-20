@@ -172,7 +172,11 @@ exports.me = function(req, res, next) {
     ],
     include: [{
       model: db.Driver,
-      as: 'driver'
+      as: 'driver',
+      include: [{
+        model: db.Vehicle,
+        as: 'vehicles'
+      }],
     }]
   })
     .then(function(user) { // don't ever give out the password or salt

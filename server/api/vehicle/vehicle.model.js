@@ -15,6 +15,7 @@ export default function (sequelize, DataTypes) {
     year: DataTypes.INTEGER(11),
     wheelchair: DataTypes.INTEGER(11),
     babySeat: DataTypes.STRING(50),
+    licenseNumber: DataTypes.STRING(50),
   }, {
     timestamps: true,
     classMethods: {

@@ -132,6 +132,31 @@ class SearchController {
       }
     };
 
+    $scope.changeMap = function () {
+      var origin = '';
+      var destination = '';
+      if ($('#pickup').val().trim() == '') {
+        origin = 'DC Library, Ring Road, Waterloo, ON, Canada';
+      } else {
+        origin = $('#pickup').val().split(' ').join('+');
+      }
+      if ($('#dropoff').val().trim() == '') {
+        destination = 'Airport Road, Toronto, ON, Canada';
+      } else {
+        destination = $('#dropoff').val().split(' ').join('+');
+      }
+
+      var url = "https://www.google.com/maps/embed/v1/directions";
+      url += "?key=AIzaSyA-S7NFs0U7prOtOHVF558VSL51qOlOmd0";
+      url += "&origin=" + origin;
+      url += "&destination=" + destination;
+      url += "&avoid=tolls|highways";
+      console.log(url);
+
+      var map = $('#map');
+      map.attr('src', url);
+    };
+
     $scope.toggleInfo = function(row) {
       var rowElement = $("#row" + row);
       toggleDetails(rowElement);

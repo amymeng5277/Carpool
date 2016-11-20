@@ -10,7 +10,7 @@
       <th>Seats</th>
       <th>Preferences</th>
       <th>Vehicle</th>
-      <th></th>
+      <th>Status</th>
     </tr>
     </thead>
     <tbody>
@@ -44,8 +44,8 @@
         <button type="button" ng-show="trip.open" ng-click="trip.open=!trip.open" class="transparent-btn">
           <span class="glyphicon glyphicon-chevron-up"></span>
         </button>
-        <button type="button" class="btn btn-xs btn-join btn-warning" ng-show="!trip.completed">Edit</button>
-        <button type="button" class="btn btn-xs btn-join btn-success" ng-show="trip.completed">Done</button>
+        <button type="button" class="btn btn-xs btn-join btn-warning" ng-show="!trip.completed">Done</button>
+        <button type="button" class="btn btn-xs btn-join btn-success" ng-show="trip.completed">Open</button>
       </td>
     </tr>
     </tbody>

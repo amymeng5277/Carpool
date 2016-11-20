@@ -4,9 +4,16 @@
 
   class TripController {
 
-    constructor($http, $scope, socket) {
+    constructor($http, $scope, socket, Auth, $state) {
       this.$http = $http;
       this.$scope = $scope;
+      this.getCurrentUser = Auth.getCurrentUser;
+      Auth.getCurrentUser(function (user) {
+        if (!user._id) {
+          $state.go('login');
+          return;
+        }
+      });
       this.awesomeThings = [];
       $scope.trips = [
         {open: false, completed: false},

@@ -4,21 +4,7 @@
 <div class="modal-body">
   <form class="form-horizontal">
     <div class="form-group">
-      <label for="trip_destination" class="col-sm-2 control-label">Destination</label>
-
-      <div class="col-sm-10">
-        <p class="input-group">
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default">
-                <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
-              </button>
-            </span>
-          <input type="text" class="form-control" id="trip_destination" placeholder="Where is your trip destination?" ng-model="tripModal.new_trip.trip_des">
-        </p>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="pick_up_location" class="col-sm-2 control-label">Pick Up</label>
+      <label for="pickup_location" class="col-sm-2 control-label">Pick-up</label>
 
       <div class="col-sm-10">
         <p class="input-group">
@@ -27,7 +13,21 @@
                   <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
                 </button>
               </span>
-          <input type="text" class="form-control" id="pick_up_location" placeholder="Where will you pick up your customer?" ng-model="tripModal.new_trip.trip_arrive">
+          <input type="text" ng-autocomplete class="form-control" id="pickup_location" placeholder="Where will you pick up your customer?" ng-model="tripModal.new_trip.pickup" details="tripModal.new_trip.pickup_details" />
+        </p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="dropoff_location" class="col-sm-2 control-label">Drop-off</label>
+
+      <div class="col-sm-10">
+        <p class="input-group">
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default">
+                <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
+              </button>
+            </span>
+          <input type="text" ng-autocomplete class="form-control" id="dropoff_location" placeholder="Where is your trip destination?" ng-model="tripModal.new_trip.dropoff" details="tripModal.new_trip.dropoff_details" />
         </p>
       </div>
     </div>
@@ -89,8 +89,7 @@
       <label for="car_model" class="col-sm-2 control-label">Car Model</label>
 
       <div class="col-sm-4">
-        <!--<input type="text" class="form-control" id="car_model" placeholder="What mode is your car?" ng-model="tripModal.new_trip.car_mod">-->
-        <select id="car_model" class="form-control" name="" placeholder="Your car model?" ng-model="tripModal.car_model">
+        <select id="car_model" class="form-control" name="" placeholder="Your car model?" ng-model="tripModal.car_model" >
           <option ng-repeat="v in tripModal.vehicles" value="{{v.model}}">{{v.model}}</option>
         </select>
       </div>
@@ -109,9 +108,11 @@
         </div>
       </div>
     </div>
+    <alert ng-repeat="alert in tripModal.alerts" type="danger" close="tripModal.closeAlert($index)" dismiss-on-timeout="2000">{{alert.msg}}</alert>
   </form>
 </div>
 <div class="modal-footer">
   <button class="btn btn-primary" type="button" ng-click="tripModal.ok()">Submit</button>
   <button class="btn btn-warning" type="button" ng-click="tripModal.cancel()">Cancel</button>
 </div>
+

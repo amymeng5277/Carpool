@@ -11,7 +11,8 @@ angular.module('uwece651f16NewApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'validation.match'
+  'validation.match',
+  'ngAutocomplete'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

@@ -3,6 +3,7 @@
   border-radius: 32px;
   color: black;
 }
+
 .partially button span {
   background-color: orange;
   border-radius: 32px;
@@ -12,9 +13,13 @@
 .animate-show.ng-hide-add, .animate-show.ng-hide-remove {
   transition: all linear 0.5s;
 }
+
 .animate-show {
   opacity: 1;
 }
+
 .animate-show.ng-hide {
   opacity: 0;
 }
+
+.pac-container { z-index: 100000 !important; }

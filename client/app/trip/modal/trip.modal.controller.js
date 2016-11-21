@@ -23,7 +23,6 @@ class TripModalInstanceCtrl {
       _this.vehicles = user.driver.vehicles;
     });
     // for calendar
-    // for calendar
     this.today();
     this.toggleMin();
     $scope.maxDate = new Date(2020, 5, 22);
@@ -46,6 +45,7 @@ class TripModalInstanceCtrl {
       date: afterTomorrow,
       status: 'partially'
     }];
+    this.alerts = [];
   }
 
   today() {
@@ -84,9 +84,17 @@ class TripModalInstanceCtrl {
   }
 
 
+  closeAlert(index) {
+    this.alerts.splice(index, 1);
+  }
+
+;
+
   ok() {
-    var user = this.getCurrentUser();
-    this.new_trip.driverId = user.driver._id;
+    this.setTripDriverId();
+    this.extractGoogleMapDetails();
+
+    return;
     this.$http.post('/api/trips', this.new_trip)
       .success(response => {
         console.log(response);
@@ -99,6 +107,39 @@ class TripModalInstanceCtrl {
     this.$modalInstance.dismiss('cancel');
   }
 
+  extractGoogleMapDetails() {
+    if (this.new_trip.pickup_details && this.new_trip.pickup_details.address_components) {
+      _.each(this.new_trip.pickup_details.address_components, component => {
+        if (component.types.length == 2 && component.types[0] == 'locality') {
+          this.new_trip.f_city = component.short_name;
+        }
+      });
+      this.new_trip.f_address = this.new_trip.pickup_details.formatted_address;
+      this.new_trip.f_latitude = this.new_trip.pickup_details.geometry.location.lat();
+      this.new_trip.f_longitude = this.new_trip.pickup_details.geometry.location.lng();
+    } else {
+      this.alerts.push({msg: 'Please input correct Pick-up Info!'});
+      return;
+    }
+    if (this.new_trip.dropoff_details && this.new_trip.dropoff_details.address_components) {
+      _.each(this.new_trip.dropoff_details.address_components, component => {
+        if (component.types.length == 2 && component.types[0] == 'locality') {
+          this.new_trip.t_city = component.short_name;
+        }
+      });
+      this.new_trip.t_address = this.new_trip.dropoff_details.formatted_address;
+      this.new_trip.t_latitude = this.new_trip.dropoff_details.geometry.location.lat();
+      this.new_trip.t_longitude = this.new_trip.dropoff_details.geometry.location.lng();
+    } else {
+      this.alerts.push({msg: 'Please input correct Drop-off Info!'});
+      return;
+    }
+  }
+
+  setTripDriverId(){
+    var user = this.getCurrentUser();
+    this.new_trip.driverId = user.driver._id;
+  }
 }
 
 angular.module('uwece651f16NewApp')

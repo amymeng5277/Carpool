@@ -7,25 +7,19 @@
     constructor($http, $scope, socket, Auth, $state) {
       this.$http = $http;
       this.$scope = $scope;
-      this.getCurrentUser = Auth.getCurrentUser;
-      Auth.getCurrentUser(function (user) {
+      this.awesomeThings = [];
+      this.trip_info = [];
+      var _this = this;
+      Auth.getCurrentUser(user=> {
         if (!user._id) {
           $state.go('login');
           return;
         }
+        $http.get('/api/users/' + user._id + '/trips').success(response=> {
+          _this.trip_info = response;
+          console.log(_this.trip_info);
+        })
       });
-      this.awesomeThings = [];
-      $scope.trips = [
-        {open: false, completed: false},
-        {open: false, completed: false},
-        {open: false, completed: true},
-        {open: false, completed: true},
-        {open: false, completed: true},
-        {open: false, completed: true},
-        {open: false, completed: true},
-        {open: false, completed: true},
-        {open: false, completed: true}
-      ];
 
       $http.get('/api/things').then(response => {
         this.awesomeThings = response.data;

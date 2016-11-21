@@ -77,7 +77,19 @@ export function show(req, res) {
   return Trip.find({
     where: {
       _id: req.params.id
-    }
+    },
+    include: [{
+      model: db.Driver,
+      as: 'driver',
+      include: [{
+        model: db.User,
+        as: 'user',
+        include: [{
+          model: db.Vehicle,
+          as: 'vehicle'
+        }]
+      }]
+    }]
   })
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))

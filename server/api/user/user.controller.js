@@ -131,7 +131,7 @@ exports.changePassword = function(req, res, next) {
 };
 
 exports.upsert = function(req, res) {
-  
+
   return User.upsert(req.body, {
     where: {
       _id: req.params.id
@@ -205,9 +205,13 @@ exports.myTrips = function(req, res, next) {
       as: 'driver',
       include: [{
         model: db.Trip,
-        as: 'trips'
+        as: 'trips',
+        include: [{
+          model: db.Vehicle,
+          as: 'vehicle'
         }]
-    },{
+      }]
+    }, {
       model: db.Passenger,
       as: 'passenger',
       include: [{

@@ -35,7 +35,7 @@
     <div class="form-group">
       <label for="pick_up_date" class="col-sm-3 control-label">Pick-up Time</label>
 
-      <div class="col-sm-4">
+      <div class="col-sm-9">
         <input type="text"
                id="pick_up_date"
                class="form-control"
@@ -50,7 +50,7 @@
     <div class="form-group">
       <label for="drop_off_date" class="col-sm-3 control-label">Drop-off Time</label>
 
-      <div class="col-sm-4">
+      <div class="col-sm-9">
         <input type="text"
                id="drop_off_date"
                class="form-control"
@@ -65,7 +65,7 @@
     <div class="form-group">
       <label for="car_model" class="col-sm-3 control-label">Car Model</label>
 
-      <div class="col-sm-4">
+      <div class="col-sm-9">
         <select id="car_model" class="form-control" name="" placeholder="Your car model?" ng-model="tripModal.car_model" >
           <option ng-repeat="v in tripModal.vehicles" value="{{v.model}}">{{v.model}}</option>
         </select>
@@ -75,7 +75,7 @@
     <div class="form-group">
       <label for="car_seats" class="col-sm-3 control-label">Seats Available</label>
 
-      <div class="col-sm-4">
+      <div class="col-sm-9">
         <div class="select">
           <div ng-repeat="selected_vehicles in tripModal.vehicles | filter:tripModal.car_model">
             <select id="car_seats" class="form-control" name="" placeholder="How many seats in your car?" ng-model="tripModal.car_seat">

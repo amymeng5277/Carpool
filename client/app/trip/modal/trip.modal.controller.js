@@ -34,8 +34,11 @@ class TripModalInstanceCtrl {
   ok() {
     this.setTripDriverId();
     this.extractGoogleMapDetails();
+    this.checkTime();
 
-    return;
+    if (this.alerts.length > 0) {
+      return;
+    }
     this.$http.post('/api/trips', this.new_trip)
       .success(response => {
         console.log(response);
@@ -59,7 +62,7 @@ class TripModalInstanceCtrl {
       this.new_trip.f_latitude = this.new_trip.pickup_details.geometry.location.lat();
       this.new_trip.f_longitude = this.new_trip.pickup_details.geometry.location.lng();
     } else {
-      this.alerts.push({msg: 'Please input correct Pick-up Info!'});
+      this.alerts.push({msg: 'Please input correct Pick-up location!'});
       return;
     }
     if (this.new_trip.dropoff_details && this.new_trip.dropoff_details.address_components) {
@@ -72,7 +75,7 @@ class TripModalInstanceCtrl {
       this.new_trip.t_latitude = this.new_trip.dropoff_details.geometry.location.lat();
       this.new_trip.t_longitude = this.new_trip.dropoff_details.geometry.location.lng();
     } else {
-      this.alerts.push({msg: 'Please input correct Drop-off Info!'});
+      this.alerts.push({msg: 'Please input correct Drop-off location!'});
       return;
     }
   }
@@ -80,6 +83,23 @@ class TripModalInstanceCtrl {
   setTripDriverId() {
     var user = this.getCurrentUser();
     this.new_trip.driverId = user.driver._id;
+  }
+
+  checkTime() {
+    if (!this.new_trip.f_datetime) {
+      this.alerts.push({msg: 'Please select Pick-up time!'});
+      return;
+    }
+    if (!this.new_trip.t_datetime) {
+      this.alerts.push({msg: 'Please select Drop-off time!'});
+      return;
+    }
+    this.new_trip.f_datetime = new Date(this.new_trip.f_datetime);
+    this.new_trip.t_datetime = new Date(this.new_trip.t_datetime);
+    if (moment(this.new_trip.t_datetime).isBefore(this.new_trip.f_datetime)) {
+      this.alerts.push({msg: 'Please set Drop-off time after Pick-up time!'});
+      return;
+    }
   }
 }
 

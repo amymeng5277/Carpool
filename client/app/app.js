@@ -12,7 +12,8 @@ angular.module('uwece651f16NewApp', [
   'ui.router',
   'ui.bootstrap',
   'validation.match',
-  'ngAutocomplete'
+  'ngAutocomplete',
+  'datetimepicker'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

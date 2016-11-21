@@ -4,9 +4,9 @@
 <div class="modal-body">
   <form class="form-horizontal">
     <div class="form-group">
-      <label for="pickup_location" class="col-sm-2 control-label">Pick-up</label>
+      <label for="pickup_location" class="col-sm-3 control-label">Pick-up</label>
 
-      <div class="col-sm-10">
+      <div class="col-sm-9">
         <p class="input-group">
             <span class="input-group-btn">
                 <button type="button" class="btn btn-default">
@@ -18,9 +18,9 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="dropoff_location" class="col-sm-2 control-label">Drop-off</label>
+      <label for="dropoff_location" class="col-sm-3 control-label">Drop-off</label>
 
-      <div class="col-sm-10">
+      <div class="col-sm-9">
         <p class="input-group">
             <span class="input-group-btn">
               <button type="button" class="btn btn-default">
@@ -33,60 +33,37 @@
     </div>
 
     <div class="form-group">
-      <label for="pick_up_date" class="col-sm-2 control-label">Pick Up Time</label>
+      <label for="pick_up_date" class="col-sm-3 control-label">Pick-up Time</label>
 
       <div class="col-sm-4">
-        <div class="input-group">
-          <input type="text"
-                 id="pick_up_date"
-                 class="form-control"
-                 datepicker-popup
-                 ng-model="tripModal.new_trip.dep_date_f"
-                 is-open="status_pickup.opened"
-                 min-date="minDate"
-                 max-date="maxDate"
-                 datepicker-options="dateOptions"
-                 date-disabled="tripModal.disabled(date, mode)"
-                 ng-required="true" close-text="Close"
-                 placeholder="YYYY-MM-DD"/>
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default" ng-click="tripModal.open($event, 'pickup')">
-                <i class="glyphicon glyphicon-calendar"></i>
-              </button>
-            </span>
-        </div>
-        <timepicker class="form-control" ng-model="mytime" ng-change="changed()" hour-step="1" minute-step="1" show-meridian="ismeridian"></timepicker>
+        <input type="text"
+               id="pick_up_date"
+               class="form-control"
+               datetimepicker
+               datetimepicker-options="{{ tripModal.datetimepicker_options }}"
+               ng-model="tripModal.new_trip.f_datetime"
+               ng-required="true"
+               placeholder="What's your pick up time?"/>
       </div>
     </div>
 
     <div class="form-group">
-      <label for="arrive_date" class="col-sm-2 control-label">Arrive Time</label>
+      <label for="drop_off_date" class="col-sm-3 control-label">Drop-off Time</label>
 
       <div class="col-sm-4">
-        <p class="input-group">
-          <input type="text"
-                 id="arrive_date"
-                 class="form-control"
-                 datepicker-popup
-                 ng-model="tripModal.new_trip.dep_date_t"
-                 is-open="status_arrive.opened"
-                 min-date="minDate"
-                 max-date="maxDate"
-                 datepicker-options="dateOptions"
-                 date-disabled="tripModal.disabled(date, mode)"
-                 ng-required="true" close-text="Close"
-                 placeholder="YYYY-MM-DD"/>
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="tripModal.open($event, 'arrive')">
-                  <i class="glyphicon glyphicon-calendar"></i>
-                </button>
-              </span>
-        </p>
+        <input type="text"
+               id="drop_off_date"
+               class="form-control"
+               datetimepicker
+               datetimepicker-options="{{ tripModal.datetimepicker_options }}"
+               ng-model="tripModal.new_trip.t_datetime"
+               ng-required="true"
+               placeholder="What's your drop off time?"/>
       </div>
     </div>
 
     <div class="form-group">
-      <label for="car_model" class="col-sm-2 control-label">Car Model</label>
+      <label for="car_model" class="col-sm-3 control-label">Car Model</label>
 
       <div class="col-sm-4">
         <select id="car_model" class="form-control" name="" placeholder="Your car model?" ng-model="tripModal.car_model" >
@@ -96,7 +73,7 @@
     </div>
 
     <div class="form-group">
-      <label for="car_seats" class="col-sm-2 control-label">Seats Available</label>
+      <label for="car_seats" class="col-sm-3 control-label">Seats Available</label>
 
       <div class="col-sm-4">
         <div class="select">

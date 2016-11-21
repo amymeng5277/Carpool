@@ -8,6 +8,7 @@ export default function (sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
+    subject: DataTypes.TEXT,
     content: DataTypes.TEXT,
   }, {
     timestamps: true,

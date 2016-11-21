@@ -4,9 +4,15 @@
 
 class SearchController {
 
+  trip_info = [];
   constructor($http, $scope, socket) {
     this.$http = $http;
     this.awesomeThings = [];
+    var _this = this;
+    $http.get('/api/trips/').success(response=> {
+      _this.trip_info = response;
+      console.log(_this.trip_info);
+    });
 
     // $http.get('/api/things').then(response => {
     //   this.awesomeThings = response.data;

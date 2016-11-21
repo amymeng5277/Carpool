@@ -18,7 +18,7 @@
         $http.get('/api/users/' + user._id + '/trips').success(response=> {
           _this.trip_info = response;
           console.log(_this.trip_info);
-        })
+        });
       });
 
       $http.get('/api/things').then(response => {

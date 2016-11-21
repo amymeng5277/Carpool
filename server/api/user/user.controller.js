@@ -216,7 +216,11 @@ exports.myTrips = function(req, res, next) {
       as: 'passenger',
       include: [{
         model: db.Trip,
-        as: 'trips'
+        as: 'trips',
+        include: [{
+          model: db.Vehicle,
+          as: 'vehicle'
+        }]
       }]
     }],
   })

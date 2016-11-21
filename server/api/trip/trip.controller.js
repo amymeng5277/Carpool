@@ -17,8 +17,8 @@ var db = require('../../sqldb');
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
-  return function(entity) {
-    if(entity) {
+  return function (entity) {
+    if (entity) {
       return res.status(statusCode).json(entity);
     }
     return null;
@@ -26,10 +26,10 @@ function respondWithResult(res, statusCode) {
 }
 
 function patchUpdates(patches) {
-  return function(entity) {
+  return function (entity) {
     try {
       jsonpatch.apply(entity, patches, /*validate*/ true);
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
 
@@ -38,8 +38,8 @@ function patchUpdates(patches) {
 }
 
 function removeEntity(res) {
-  return function(entity) {
-    if(entity) {
+  return function (entity) {
+    if (entity) {
       return entity.destroy()
         .then(() => {
           res.status(204).end();
@@ -49,8 +49,8 @@ function removeEntity(res) {
 }
 
 function handleEntityNotFound(res) {
-  return function(entity) {
-    if(!entity) {
+  return function (entity) {
+    if (!entity) {
       res.status(404).end();
       return null;
     }
@@ -60,14 +60,26 @@ function handleEntityNotFound(res) {
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
-  return function(err) {
+  return function (err) {
     res.status(statusCode).send(err);
   };
 }
 
 // Gets a list of Trips
 export function index(req, res) {
-  return Trip.findAll()
+  return Trip.findAll({
+    include: [{
+      model: db.Driver,
+      as: 'driver',
+      include: [{
+        model: db.User,
+        as: 'user',
+      }]
+    }, {
+      model: db.Vehicle,
+      as: 'vehicle'
+    }]
+  })
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
@@ -105,7 +117,7 @@ export function create(req, res) {
 
 // Upserts the given Trip in the DB at the specified ID
 export function upsert(req, res) {
-  if(req.body._id) {
+  if (req.body._id) {
     delete req.body._id;
   }
 
@@ -120,7 +132,7 @@ export function upsert(req, res) {
 
 // Updates an existing Trip in the DB
 export function patch(req, res) {
-  if(req.body._id) {
+  if (req.body._id) {
     delete req.body._id;
   }
   return Trip.find({
@@ -162,13 +174,13 @@ export function getDriver(req, res, next) {
       }]
     }]
   })
-    .then(function(trip) {
-      if(!trip){
+    .then(function (trip) {
+      if (!trip) {
         return res.status(404).end();
       }
       res.json(trip.driver.user.profile);
     })
-    .catch(function(err) {
+    .catch(function (err) {
       next(err);
     });
 }
@@ -189,15 +201,15 @@ export function getPassengers(req, res, next) {
       }]
     }]
   })
-    .then(function(trip) {
-      if(!trip){
+    .then(function (trip) {
+      if (!trip) {
         return res.status(404).end();
       }
-      res.json(trip.passengers.map(function(passenger){
+      res.json(trip.passengers.map(function (passenger) {
         return passenger.user.profile;
       }));
     })
-    .catch(function(err) {
+    .catch(function (err) {
       next(err);
     });
 }
@@ -212,8 +224,8 @@ export function addPassenger(req, res, next) {
       as: 'passengers'
     }]
   })
-    .then(function(trip){
-      if(!trip){
+    .then(function (trip) {
+      if (!trip) {
         return null;
       }
 
@@ -226,21 +238,21 @@ export function addPassenger(req, res, next) {
           as: 'passenger'
         }]
       })
-        .then(function(user){
-          if(!user){
+        .then(function (user) {
+          if (!user) {
             return null;
           }
 
           return trip.addPassengers(user.passenger);
         });
     })
-    .then(function(passenger){
-      if(!passenger){
+    .then(function (passenger) {
+      if (!passenger) {
         return res.status(404).end();
       }
       res.json(passenger);
     })
-    .catch(function(err){
+    .catch(function (err) {
       next(err);
     });
 }

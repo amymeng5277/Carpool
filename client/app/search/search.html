@@ -59,43 +59,56 @@
   <table class="table margin-top-20">
     <thead>
     <tr>
+      <th>Price</th>
       <th>Pick-up</th>
       <th>Drop-off</th>
       <th>Map</th>
-      <th>Time</th>
+      <th width="180">Time</th>
       <th>Seats</th>
       <th>Preferences</th>
       <th>Vehicle</th>
-      <th></th>
+      <th>Status</th>
     </tr>
     </thead>
-    <tbody id='searchResultTable'>
-
-    <!--
-    EXAMPLE ROW, this is dynamically created afterwards
-
-    <tr id="row1">
-      <td>Waterloo<div class="expandDetail">201 King Street</div></td>
-      <td>Toronto<div class="expandDetail">3422 College Street</div></td>
-      <td>
-        <button type="button" class="transparent-btn" id="locate">
-          <span class="glyphicon glyphicon-map-marker"></span>
-        </button>
+    <tbody>
+    <tr ng-repeat="t in search.trip_info">
+      <td><span class="label label-primary">{{ t.price |currency}}</span>
       </td>
-      <td>2/13/2016 4:00 PM<div class="expandDetail">In 48h 45m</div></td>
-      <td>3/4<div class="expandDetail"><img class="car-seats" src="assets/images/car.png"></div></td>
-      <td><i class="fa fa-female"></i> <i class="fa fa-music"></i> <i class="fa fa-wheelchair"></i></td>
-      <td>Sedan<div class="expandDetail">2016 Honda Civic</div></td>
+      <td>{{ t.f_city }}
+        <div ng-show="t.opened" class="animate-show">{{ t.f_address }}</div>
+
+      </td>
+      <td>{{ t.t_city }}
+        <div ng-show="t.opened" class="animate-show">{{ t.t_address }}</div>
+      </td>
       <td>
-        <button type="button" ng-click="toggleInfo(1)" class="transparent-btn" id="expand">
-          <span id="arrow" class="glyphicon glyphicon-chevron-down"></span>
+        <a type="button" class="transparent-btn" href="https://www.google.com/maps/dir/{{t.f_address}}/{{t.t_address}}" target="_blank">
+          <span class="glyphicon glyphicon-map-marker"></span>
+        </a>
+      </td>
+      <td>{{ t.f_datetime|date:'yyyy-MM-dd HH:mm:ss'}}
+        <div ng-show="t.opened" class="animate-show">In 48h 45m</div>
+      </td>
+      <td>{{ t.seats_available }}/{{ t.vehicle.seat}}
+        <div ng-show="t.opened" class="animate-show"><img class="car-seats" src="assets/images/car.png"></div>
+      </td>
+      <td><i class="fa fa-female" ng-show="t.babyseat"></i> <i class="fa fa-music"></i> <i class="fa fa-wheelchair" ng-show="t.wheelchair"></i></td>
+      <td>{{ t.vehicle.maker}}
+        <div ng-show="t.opened" class="animate-show">{{ t.vehicle.year}} {{t.vehicle.model}}</div>
+      </td>
+      <td>
+        <button type="button" ng-show="!t.opened" ng-click="t.opened=!t.opened" class="transparent-btn">
+          <span class="glyphicon glyphicon-chevron-down"></span>
         </button>
-        <button type="button" class="btn btn-xs btn-join">Join</button>
+        <button type="button" ng-show="t.opened" ng-click="t.opened=!t.opened" class="transparent-btn">
+          <span class="glyphicon glyphicon-chevron-up"></span>
+        </button>
+        <button type="button" class="btn btn-xs btn-join btn-warning" ng-show="t.completed">Close</button>
+        <button type="button" class="btn btn-xs btn-join btn-success" ng-show="!t.completed">Open</button>
       </td>
     </tr>
-    -->
-
     </tbody>
+  </table>
   </table>
 </div>
 

@@ -20,10 +20,10 @@ export default function (sequelize, DataTypes) {
     t_longitude: DataTypes.DOUBLE,
     f_datetime: DataTypes.DATE,
     t_datetime: DataTypes.DATE,
-    seats_available: DataTypes.INTEGER(11),
     price: DataTypes.DOUBLE,
+    seats_available: DataTypes.INTEGER(11),
     wheelchair: DataTypes.BOOLEAN,
-    babySeat: DataTypes.BOOLEAN,
+    babyseat: DataTypes.BOOLEAN,
     open: DataTypes.BOOLEAN,
     completed: DataTypes.BOOLEAN
   }, {

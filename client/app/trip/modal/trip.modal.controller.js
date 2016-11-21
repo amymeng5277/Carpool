@@ -3,9 +3,10 @@
 class TripModalInstanceCtrl {
   new_trip = {};
 
-  constructor($scope, $state, $modalInstance, $http, Auth) {
+  constructor($scope, $state, $modalInstance, $http, Auth, $filter) {
     this.$scope = $scope;
     this.$state = $state;
+    this.$filter = $filter;
     this.$modalInstance = $modalInstance;
     this.$http = $http;
     this.getCurrentUser = Auth.getCurrentUser;
@@ -35,15 +36,21 @@ class TripModalInstanceCtrl {
     this.setTripDriverId();
     this.extractGoogleMapDetails();
     this.checkTime();
+    this.checkPrice();
+    this.checkCar();
+    this.setOtherInfo();
 
     if (this.alerts.length > 0) {
       return;
     }
+
     this.$http.post('/api/trips', this.new_trip)
       .success(response => {
-        console.log(response);
-        this.$modalInstance.close(this.$scope.selected.item);
-        this.$state.go('trip');
+        this.$modalInstance.close();
+        if($state.name == 'trip')
+          this.$state.reload();
+        else
+          this.$state.go('trip');
       });
   }
 
@@ -100,6 +107,33 @@ class TripModalInstanceCtrl {
       this.alerts.push({msg: 'Please set Drop-off time after Pick-up time!'});
       return;
     }
+  }
+
+  checkPrice(){
+    if (!this.new_trip.price || this.new_trip.price < 0) {
+      this.alerts.push({msg: 'Please input valid price!'});
+      return;
+    }
+  }
+
+  checkCar(){
+    if (!this.new_trip.car_model) {
+      this.alerts.push({msg: 'Please select your car!'});
+      return;
+    }
+    this.new_trip.vehicleId = _.filter(this.vehicles, v => {
+      return v.model == this.new_trip.car_model;
+    })[0]._id;
+    if (!parseInt(this.new_trip.seats)) {
+      this.alerts.push({msg: 'Please select your available seats!'});
+      return;
+    }
+    this.new_trip.seats_available = parseInt(this.new_trip.seats);
+  }
+
+  setOtherInfo(){
+    this.new_trip.open = true;
+    this.new_trip.completed = false;
   }
 }
 

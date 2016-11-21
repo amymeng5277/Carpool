@@ -26,9 +26,9 @@
 
 
     <div class="col-sm-9">
-      
+
  	  <div class="panel-group"> </div>
- 	  <div class="panel panel-primary"> 
+ 	  <div class="panel panel-primary">
       <div class="panel-heading" id = "section1"> <strong>Basic information</strong></div>
       <div class="panel-body">
 
@@ -36,26 +36,26 @@
       <br> <label class="col-sm-3" for="user_first_name">
           First Name </label>
       	<div class="col-sm-6">
-          
-      <input id="user_first_name" class="form-control" name="user[first_name]" size="30" type="text" value="" ng-model = "profile.currentUser.fname" placeholder="Enter first name"> 
+
+      <input id="user_first_name" class="form-control" name="user[first_name]" size="30" type="text" value="" ng-model = "profile.currentUser.fname" placeholder="Enter first name">
       	</div>
 	  </div>
       <br>
-      
+
       <div class="row row-condensed space-4">
         <label class="col-sm-3" for="user_last_name">
-          Last Name 
+          Last Name
         </label>
         <div class="col-sm-6">
-          
+
       <input id="user_last_name" class="form-control" name="user[last_name]" size="30" type="text" value="" ng-model = "profile.currentUser.lname" placeholder="Enter last name">
         </div>
       </div>
 <br>
- 
+
  	<div class="row row-condensed space-4">
         <label class="col-sm-3" for="user_sex">
-          Gender 
+          Gender
         </label>
         <div class="col-sm-6">
               <select class="form-control" ng-model="profile.currentUser.gender">
@@ -69,14 +69,14 @@
 
    <div class="row row-condensed space-4">
         <label class="col-sm-3" for="user_birthdate">
-          Birth Date 
+          Birth Date
         </label>
         <div class="col-sm-6">
-        <form role="form" class="form-inline"> 
+        <form role="form" class="form-inline">
         	<div class="form-group">
-      
+
 	<select class="form-control" id="user_birthdate_2i" name="user[birthdate(2i)]" ng-model="profile.currentUser.birthM">
-  
+
 		<option ng-selected="profile.currentUser.birthM==1" value="1">January</option>
 		<option ng-selected="profile.currentUser.birthM==2" value="2">February</option>
 		<option ng-selected="profile.currentUser.birthM==3" value="3">March</option>
@@ -91,9 +91,9 @@
 		<option ng-selected="profile.currentUser.birthM==12" value="12">December</option>
 	</select>
 
-      
+
     <select class="form-control" id="user_birthdate_3i" name="user[birthdate(3i)]" ng-model="profile.currentUser.birthD">
-    
+
 		<option ng-selected="profile.currentUser.birthD==1" value="1">1</option>
 		<option ng-selected="profile.currentUser.birthD==2" value="2">2</option>
 		<option ng-selected="profile.currentUser.birthD==3" value="3">3</option>
@@ -127,9 +127,9 @@
 		<option ng-selected="profile.currentUser.birthD==31" value="31">31</option>
 	</select>
 
-        
+
     <select class="form-control" id="user_birthdate_1i" name="user[birthdate(1i)]" ng-model="profile.currentUser.birthY">
-   
+
 		<option ng-selected="profile.currentUser.birthY==2000" value="2000">2000</option>
 		<option ng-selected="profile.currentUser.birthY==1999" value="1999">1999</option>
 		<option ng-selected="profile.currentUser.birthY==1998" value="1998">1998</option>
@@ -168,22 +168,22 @@
       <div class="panel-heading" id = "section2"> <strong>Contact information</strong></div>
       <div class="panel-body"><div class="row row-condensed space-4">
      <br> <label class="col-sm-3" for="user_eamil">
-          E-mail address 
+          E-mail address
       </label>
       <div class="col-sm-6">
-          
-      <input id="user_eamil" class="form-control" name="user[email]" size="30" type="text" value="" ng-model = "profile.currentUser.email" placeholder="for example: 123@gmail.com"> 
+
+      <input id="user_eamil" class="form-control" name="user[email]" size="30" type="text" value="" ng-model = "profile.currentUser.email" placeholder="for example: 123@gmail.com">
        	</div>
 	</div>
       <br>
 
       <div class="row row-condensed space-4">
       <label class="col-sm-3" for="user_phone">
-         Phone 
+         Phone
       </label>
       <div class="col-sm-6">
-          
-      <input id="user_phone" class="form-control" name="user[phone]" size="30" type="number" value="" ng-model = "profile.currentUser.phone" placeholder="Enter your cell phone number"> 
+
+      <input id="user_phone" class="form-control" name="user[phone]" size="30" type="number" value="" ng-model = "profile.currentUser.phone" placeholder="Enter your cell phone number">
        	</div>
 	</div>
       <br>
@@ -194,7 +194,7 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading" id = "section3"> <strong>Optional information</strong></div>
-      <br> 
+      <br>
      <h5>&nbsp &nbspNote:If you are a driver,please complete this part.</h5>
      <div class="panel-body">
 
@@ -204,7 +204,7 @@
      <label class="col-sm-3">
               The manufacturer
      </label>
-    <div class="col-sm-6">         
+    <div class="col-sm-6">
     <input id="user_car1_manufactor" class="form-control" name="user[car1_manufactor]" size="30" type="text" ng-model="profile.myVehicle1.maker" placeholder="for example:Jeep,BMW,Benz,ect">
     </div>
   </div>
@@ -212,21 +212,21 @@
 
      <div class="row row-condensed space-4">
         <label class="col-sm-3">
-          The model 
+          The model
         </label>
         <div class="col-sm-6">
-          
+
       <input id="user_car1_model" class="form-control" name="user[car1_model]" size="30" type="text" ng-model="profile.myVehicle1.model" placeholder="for example:Patriot,Wrangler,Cherokee,ect">
         </div>
       </div>
-<br>s
+<br>
 
 <div class="row row-condensed space-4">
         <label class="col-sm-3">
-          The license plate number 
+          The license plate number
         </label>
         <div class="col-sm-6">
-          
+
       <input id="user_car1_licenseNumber" class="form-control" name="user[car1_licenseNumber]" size="30" type="text" ng-model="profile.myVehicle1.licenseNumber" placeholder="8 characters (letters and/or numbers)">
         </div>
 </div>
@@ -234,7 +234,7 @@
 
 <div class="row row-condensed space-4">
         <label class="col-sm-3">
-          The year 
+          The year
         </label>
         <div class="col-sm-6">
              <select class="form-control" ng-model="profile.myVehicle1.year">
@@ -252,7 +252,7 @@
 
 <div class="row row-condensed space-4">
         <label class="col-sm-3">
-          The seats 
+          The seats
         </label>
         <div class="col-sm-6">
              <select class="form-control" ng-model="profile.myVehicle1.seat">
@@ -269,10 +269,10 @@
 
 <div class="row row-condensed space-4">
         <label class="col-sm-3">
-          The color 
+          The color
         </label>
         <div class="col-sm-6">
-          
+
       <input id="user_car1_color" class="form-control" name="user[car1_color]" size="30" type="text" ng-model="profile.myVehicle1.color" placeholder="for example:Pure white,Navy blue,Sliver,ect">
         </div>
 </div>
@@ -280,7 +280,7 @@
 
 <div class="row row-condensed space-4">
         <label class="col-sm-3">
-          The baby seat 
+          The baby seat
         </label>
         <div class="col-sm-6">
              <select class="form-control" ng-model="profile.myVehicle1.babySeat">
@@ -293,22 +293,23 @@
 </div>
 <br>
 
-<div class="row row-condensed space-4">
-        <label class="col-sm-3">
-          Available for wheelchair? 
-        </label>
-        <div class= "col-sm-3">
-        <div class= "radio">
-        <label><input type="radio" name="optradio0" value="1" ng-model="profile.myVehicle1.wheelchair" ng-change="profile.myVehicle1.wheelchair==1"
-> Yes</label>
-        </div>
-        </div>
-        <div class= "col-sm-3">
-        <div class= "radio">
-        <label><input type="radio" name="optradio0" value="0" ng-model="profile.myVehicle1.wheelchair" ng-change="profile.myVehicle1.wheelchair==0"
-> No</label>
-        </div>
-        </div>
+       <div class="row row-condensed space-4">
+         <label class="col-sm-3">
+           Available for wheelchair?
+         </label>
+
+         <div class="col-sm-3">
+           <div class="radio">
+             <label><input type="radio" name="optradio0" value="1" ng-model="profile.myVehicle1.wheelchair" ng-change="profile.myVehicle1.wheelchair==1"
+               > Yes</label>
+           </div>
+         </div>
+         <div class="col-sm-3">
+           <div class="radio">
+             <label><input type="radio" name="optradio0" value="0" ng-model="profile.myVehicle1.wheelchair" ng-change="profile.myVehicle1.wheelchair==0"
+               > No</label>
+           </div>
+         </div>
 </div>
 <br>
 
@@ -317,7 +318,7 @@
  <label class="col-sm-3">
           The manufacturer
       </label>
-     	 <div class="col-sm-6">         
+     	 <div class="col-sm-6">
       <input id="user_car2_manufactor" class="form-control" name="user[car2_manufactor]" size="30" type="text" value="" ng-model="profile.myVehicle2.maker" placeholder="for example:Jeep,BMW,Benz,ect">
         </div>
       </div>
@@ -325,10 +326,10 @@
 
      <div class="row row-condensed space-4">
         <label class="col-sm-3">
-          The model 
+          The model
         </label>
         <div class="col-sm-6">
-          
+
       <input id="user_car2_model" class="form-control" name="user[car2_model]" size="30" type="text" value="" ng-model="profile.myVehicle2.model" placeholder="for example:Patriot,Wrangler,Cherokee,ect">
         </div>
       </div>
@@ -336,10 +337,10 @@
 
 <div class="row row-condensed space-4">
         <label class="col-sm-3">
-          The license plate number 
+          The license plate number
         </label>
         <div class="col-sm-6">
-          
+
       <input id="user_car2_licenseNumber" class="form-control" name="user[car2_licenseNumber]" size="30" type="text" ng-model="profile.myVehicle2.licenseNumber" placeholder="8 characters (letters and/or numbers)">
         </div>
 </div>
@@ -347,7 +348,7 @@
 
 <div class="row row-condensed space-4">
         <label class="col-sm-3">
-          The year 
+          The year
         </label>
         <div class="col-sm-6">
         <select class="form-control" ng-model="profile.myVehicle2.year">
@@ -364,7 +365,7 @@
 
 <div class="row row-condensed space-4">
         <label class="col-sm-3">
-          The seats 
+          The seats
         </label>
         <div class="col-sm-6">
              <select class="form-control" ng-model="profile.myVehicle2.seat">
@@ -381,17 +382,17 @@
 
 <div class="row row-condensed space-4">
         <label class="col-sm-3">
-          The color 
+          The color
         </label>
         <div class="col-sm-6">
-          
+
       <input id="user_car2_color" class="form-control" name="user[car2_color]" size="30" type="text" value="" ng-model="profile.myVehicle2.color" placeholder="for example:Pure white,Navy blue,Sliver,ect">
         </div>
-      </div>
+</div>
 <br>
 <div class="row row-condensed space-4">
         <label class="col-sm-3">
-          The baby seat 
+          The baby seat
         </label>
         <div class="col-sm-6">
              <select class="form-control" ng-model="profile.myVehicle2.babySeat">
@@ -406,7 +407,7 @@
 
 <div class="row row-condensed space-4">
         <label class="col-sm-3">
-          Available for wheelchair? 
+          Available for wheelchair?
         </label>
         <div class= "col-sm-3">
         <div class= "radio">
@@ -445,7 +446,7 @@
         <label class="col-sm-3" >
           The <abbr title="choose the preference gender of your carpool driver">gender of the driver</abbr>
         </label>
-        <div class="col-sm-6"> 
+        <div class="col-sm-6">
       		 <select class="form-control" ng-model="profile.currentUser.preGender">
                 <option ng-selected="profile.currentUser.preGender== 1" value="1">Male</option>
                 <option ng-selected="profile.currentUser.preGender== 2" value="2">Female</option>
@@ -466,7 +467,7 @@
 <br>
       <div class="row row-condensed space-4">
         <label class="col-sm-3">
-          The seats 
+          The seats
         </label>
         <div class="col-sm-6">
              <select class="form-control" ng-model="profile.currentUser.preSeat">
@@ -480,10 +481,10 @@
         </div>
 </div>
 <br>
-      
+
      <div class="row row-condensed space-4">
         <label class="col-sm-3">
-          The baby seat 
+          The baby seat
         </label>
         <div class="col-sm-6">
              <select class="form-control" ng-model="profile.currentUser.preBabySeat">
@@ -513,7 +514,7 @@
         </div>
         </div>
 </div>
-<br> 
+<br>
 
 
 	</div>
@@ -524,7 +525,7 @@
   		<button class="btn btn-primary btn-lg btn-block" ng-click="profile.save()">Save</button>
  		</div>
  	</div>
- 
+
 
 <footer>
 </footer>

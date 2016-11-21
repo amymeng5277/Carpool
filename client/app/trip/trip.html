@@ -17,39 +17,38 @@
     <tbody>
     <tr ng-repeat="t in trip.trip_info">
       <td><span class="label label-primary">{{ t.price |currency}}</span>
-        <!--<div ng-show="trip.open" class="animate-show">{{ t.f_address }}</div>-->
       </td>
       <td>{{ t.f_city }}
-        <div ng-show="trip.open" class="animate-show">{{ t.f_address }}</div>
+        <div ng-show="t.opened" class="animate-show">{{ t.f_address }}</div>
 
       </td>
       <td>{{ t.t_city }}
-        <div ng-show="trip.open" class="animate-show">{{ t.t_address }}</div>
+        <div ng-show="t.opened" class="animate-show">{{ t.t_address }}</div>
       </td>
       <td>
-        <button type="button" class="transparent-btn">
+        <a type="button" class="transparent-btn" href="https://www.google.com/maps/dir/{{t.f_address}}/{{t.t_address}}" target="_blank">
           <span class="glyphicon glyphicon-map-marker"></span>
-        </button>
+        </a>
       </td>
-      <td>{{ t.dep_date_f|date:'yyyy-MM-dd HH:mm:ss'}}
-        <div ng-show="trip.open" class="animate-show">In 48h 45m</div>
+      <td>{{ t.f_datetime|date:'yyyy-MM-dd HH:mm:ss'}}
+        <div ng-show="t.opened" class="animate-show">In 48h 45m</div>
       </td>
       <td>{{ t.seats_available }}/{{ t.vehicle.seat}}
-        <div ng-show="trip.open" class="animate-show"><img class="car-seats" src="assets/images/car.png"></div>
+        <div ng-show="t.opened" class="animate-show"><img class="car-seats" src="assets/images/car.png"></div>
       </td>
-      <td><i class="fa fa-female" ng-show="t.babySeat"></i> <i class="fa fa-music"></i> <i class="fa fa-wheelchair" ng-show="t.wheelchair"></i></td>
+      <td><i class="fa fa-female" ng-show="t.babyseat"></i> <i class="fa fa-music"></i> <i class="fa fa-wheelchair" ng-show="t.wheelchair"></i></td>
       <td>{{ t.vehicle.maker}}
-        <div ng-show="trip.open" class="animate-show">{{ t.vehicle.year}} {{t.vehicle.model}}</div>
+        <div ng-show="t.opened" class="animate-show">{{ t.vehicle.year}} {{t.vehicle.model}}</div>
       </td>
       <td>
-        <button type="button" ng-show="!trip.open" ng-click="trip.open=!trip.open" class="transparent-btn">
+        <button type="button" ng-show="!t.opened" ng-click="t.opened=!t.opened" class="transparent-btn">
           <span class="glyphicon glyphicon-chevron-down"></span>
         </button>
-        <button type="button" ng-show="trip.open" ng-click="trip.open=!trip.open" class="transparent-btn">
+        <button type="button" ng-show="t.opened" ng-click="t.opened=!t.opened" class="transparent-btn">
           <span class="glyphicon glyphicon-chevron-up"></span>
         </button>
-        <button type="button" class="btn btn-xs btn-join btn-warning" ng-show="!t.completed">Done</button>
-        <button type="button" class="btn btn-xs btn-join btn-success" ng-show="t.completed">Open</button>
+        <button type="button" class="btn btn-xs btn-join btn-warning" ng-show="t.completed">Close</button>
+        <button type="button" class="btn btn-xs btn-join btn-success" ng-show="!t.completed">Open</button>
       </td>
     </tr>
     </tbody>

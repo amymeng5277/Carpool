@@ -13,7 +13,8 @@
                   <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
                 </button>
               </span>
-          <input type="text" ng-autocomplete class="form-control" id="pickup_location" placeholder="Where will you pick up your customer?" ng-model="tripModal.new_trip.pickup" details="tripModal.new_trip.pickup_details" />
+          <input type="text" ng-autocomplete class="form-control" id="pickup_location" placeholder="Where will you pick up your customer?" ng-model="tripModal.new_trip.pickup"
+                 details="tripModal.new_trip.pickup_details"/>
         </p>
       </div>
     </div>
@@ -27,7 +28,8 @@
                 <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
               </button>
             </span>
-          <input type="text" ng-autocomplete class="form-control" id="dropoff_location" placeholder="Where is your trip destination?" ng-model="tripModal.new_trip.dropoff" details="tripModal.new_trip.dropoff_details" />
+          <input type="text" ng-autocomplete class="form-control" id="dropoff_location" placeholder="Where is your trip destination?" ng-model="tripModal.new_trip.dropoff"
+                 details="tripModal.new_trip.dropoff_details"/>
         </p>
       </div>
     </div>
@@ -62,29 +64,70 @@
       </div>
     </div>
 
+
+    <div class="form-group">
+      <label for="trip_price" class="col-sm-3 control-label">Price</label>
+
+      <div class="col-sm-4">
+        <p class="input-group">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-primary">
+                  <i class="glyphicon glyphicon-usd" aria-hidden="true"></i>
+                </button>
+              </span>
+          <input type="number" id="trip_price" class="form-control" placeholder="Price?"
+                 ng-model="tripModal.new_trip.price" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01"/>
+        </p>
+      </div>
+    </div>
+
+
     <div class="form-group">
       <label for="car_model" class="col-sm-3 control-label">Car Model</label>
 
-      <div class="col-sm-9">
-        <select id="car_model" class="form-control" name="" placeholder="Your car model?" ng-model="tripModal.car_model" >
+      <div class="col-sm-4">
+        <select id="car_model" class="form-control" name="" placeholder="Your car model?" ng-model="tripModal.new_trip.car_model">
           <option ng-repeat="v in tripModal.vehicles" value="{{v.model}}">{{v.model}}</option>
         </select>
       </div>
     </div>
 
-    <div class="form-group">
+    <div ng-show="tripModal.new_trip.car_model" class="form-group">
       <label for="car_seats" class="col-sm-3 control-label">Seats Available</label>
 
-      <div class="col-sm-9">
+      <div class="col-sm-4">
         <div class="select">
-          <div ng-repeat="selected_vehicles in tripModal.vehicles | filter:tripModal.car_model">
-            <select id="car_seats" class="form-control" name="" placeholder="How many seats in your car?" ng-model="tripModal.car_seat">
-              <option ng-repeat="seat in selected_vehicles.seats_option" value="seat">{{seat}}</option>
+          <div ng-repeat="selected_vehicles in tripModal.vehicles | filter:tripModal.new_trip.car_model">
+            <select id="car_seats" class="form-control" name="" placeholder="How many seats in your car?" ng-model="tripModal.new_trip.seats">
+              <option ng-repeat="seat in selected_vehicles.seats_option" value="{{seat}}">{{seat}}</option>
             </select>
           </div>
         </div>
       </div>
     </div>
+
+    <div ng-show="tripModal.new_trip.car_model" class="form-group">
+      <label for="wheelchair" class="col-sm-3 control-label">Provide wheelchair</label>
+
+      <div class="col-sm-4">
+        <div id="wheelchair" ng-repeat="selected_vehicles in tripModal.vehicles | filter:tripModal.new_trip.car_model">
+          <input type="checkbox" class="form-control form-check-input" ng-model="tripModal.new_trip.wheelchair" style="box-shadow: none"  />
+        </div>
+      </div>
+    </div>
+
+
+    <div ng-show="tripModal.new_trip.car_model" class="form-group">
+      <label for="babyseat" class="col-sm-3 control-label">Provide baby-seat</label>
+
+      <div class="col-sm-4">
+        <div id="babyseat" ng-repeat="selected_vehicles in tripModal.vehicles | filter:tripModal.new_trip.car_model">
+          <input type="checkbox" class="form-control form-check-input" ng-model="tripModal.new_trip.babyseat" style="box-shadow: none"  />
+        </div>
+      </div>
+    </div>
+
+
     <alert ng-repeat="alert in tripModal.alerts" type="danger" close="tripModal.closeAlert($index)" dismiss-on-timeout="2000">{{alert.msg}}</alert>
   </form>
 </div>

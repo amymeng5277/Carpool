@@ -44,13 +44,14 @@ class TripModalInstanceCtrl {
       return;
     }
 
+    var _this = this;
     this.$http.post('/api/trips', this.new_trip)
       .success(response => {
-        this.$modalInstance.close();
-        if($state.name == 'trip')
-          this.$state.reload();
+        _this.$modalInstance.close();
+        if(_this.$state.current.name == 'trip')
+          _this.$state.reload();
         else
-          this.$state.go('trip');
+          _this.$state.go('trip');
       });
   }
 

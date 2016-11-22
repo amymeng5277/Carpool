@@ -190,6 +190,14 @@ Query.sync()
       f_city_id: 1, /* Please indicate what does this mean?*/
       t_city_id: 2, /* Please indicate what does this mean?*/
       seat: 4,
+      f_city: 'Waterloo',
+      f_address: 'Ring Rd, Waterloo, ON N2L 3G1, Canada',
+      t_city: 'Toronto',
+      t_address: 'University of Toronto, College View Avenue, Toronto, ON M5P 3J1, Canada',
+      f_latitude: 43.4727179,
+      f_longitude: -80.5443791,
+      t_latitude: 43.682394,
+      t_longitude: -79.4190418,
       dep_date_f: new Date(),
       dep_date_t: new Date(),
       passengerId: 1
@@ -198,6 +206,14 @@ Query.sync()
       f_city_id: 2, /* Please indicate what does this mean?*/
       t_city_id: 1, /* Please indicate what does this mean?*/
       seat: 4,
+      f_city: 'Waterloo',
+      f_address: 'Ring Rd, Waterloo, ON N2L 3G1, Canada',
+      t_city: 'Toronto',
+      t_address: 'University of Toronto, College View Avenue, Toronto, ON M5P 3J1, Canada',
+      f_latitude: 43.4727179,
+      f_longitude: -80.5443791,
+      t_latitude: 43.682394,
+      t_longitude: -79.4190418,
       dep_date_f: new Date(),
       dep_date_t: new Date(),
       passengerId: 2

@@ -103,7 +103,7 @@
           <span class="glyphicon glyphicon-chevron-up"></span>
         </button>
         <button type="button" class="btn btn-xs btn-join btn-warning" ng-show="t.completed">Full</button>
-        <button type="button" class="btn btn-xs btn-join btn-success" ng-show="!t.completed">Join</button>
+        <button type="button" class="btn btn-xs btn-join btn-success" ng-show="!t.completed" ng-click="joinTrip([t._id])">Join</button>
       </td>
     </tr>
     </tbody>
@@ -142,44 +142,6 @@
   initMap();
 
   $('#datetimepicker').datetimepicker();
-
-
-  function toggleDetails(rowElement) {
-    var arrowElement = $(rowElement.find("#arrow"));
-    if (arrowElement.hasClass("glyphicon-chevron-down")) {
-      arrowElement.removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
-      var expanding = true;
-    } else {
-      arrowElement.removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
-      var expanding = false;
-    }
-
-    // handle the content to toggle
-    var toToggle = $(rowElement.find(".expandDetail"));
-    //console.log(toToggle);
-    for (var content = 0; content < toToggle.length; content++) {
-      $(toToggle[content]).toggle();
-      //console.log(toToggle[content]);
-    }
-  }
-
-  $('body').on("click", "[id^=join-]", function () {
-    var tripid = $(this).attr('id').split('-')[1];
-    var userid = 0; // TODO
-
-    var url = '/tripid?tripid=' + tripid + '&userid=' + userid;
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.send();
-
-    if (xhr.status == 0) {
-      window.location.href = "/trip";
-    }
-  });
-
-  $('body').on("click", "#expand", function () {
-    toggleDetails($(this).closest('[id^=row]'));
-  });
 
 </script>
 

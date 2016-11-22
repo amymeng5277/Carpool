@@ -4,7 +4,7 @@
 
 class SearchController {
   trip_info = [];
-  constructor($http, $scope, socket) {
+  constructor($http, $scope, socket, Auth) {
     this.$http = $http;
     this.awesomeThings = [];
     var _this = this;
@@ -65,6 +65,18 @@ class SearchController {
       $http.post(url).success(response=> {
         $('#no-matches-1').hide();
         $('#no-matches-2').show();
+      });
+    };
+
+    $scope.joinTrip = function(tripId) {
+      Auth.getCurrentUser(user=> {
+        if (!user._id) {
+          $state.go('login');
+          return;
+        }
+        $http.post('/api/trips/' + tripId[0] + '/passengers', {'passengerId': user._id}).success(response=> {
+          window.location.href = "/trip";
+        });
       });
     };
 

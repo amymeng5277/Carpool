@@ -27,7 +27,7 @@
       </div>
       <br>
       <button type="button" ng-click="changeMap()" class="btn half-fill">Find Route</button>
-      <button type="button" ng-click="doQuery('GET')" class="btn half-fill">Search<span class="glyphicon glyphicon-search"></span></button>
+      <button type="button" ng-click="queryTrips()" class="btn half-fill">Search <span class="glyphicon glyphicon-search"></span></button>
       <button type="button" ng-click="expandMap()" class="btn half-fill"> Expand Map</button>
       <br>
 
@@ -44,14 +44,13 @@
       </iframe>
     </div>
   </div>
-  <p>DELETE ME -- Search will randomly return 0 or 2 results for testing purposes -- DELETE ME</p>
   <br>
 
   <div class="row">
-    <div class="col-sm-12 text-center text-alert" id="no-matches" ng-click="doQuery('POST')">
+    <div class="col-sm-12 text-center text-alert" id="no-matches-1" ng-click="postQuery()">
       <p>We couldn't find any matches! Click here to notify you when there's a match!</p>
     </div>
-    <div class="col-sm-12 text-center text-success" id="query-saved">
+    <div class="col-sm-12 text-center text-success" id="no-matches-2">
       <p>Query saved! We will notify you when there's a match!</p>
     </div>
   </div>
@@ -87,7 +86,7 @@
         </a>
       </td>
       <td>{{ t.f_datetime|date:'yyyy-MM-dd HH:mm:ss'}}
-        <div ng-show="t.opened" class="animate-show">In 48h 45m</div>
+        <div ng-show="t.opened" class="animate-show"></div>
       </td>
       <td>{{ t.seats_available }}/{{ t.vehicle.seat}}
         <div ng-show="t.opened" class="animate-show"><img class="car-seats" src="assets/images/car.png"></div>
@@ -103,8 +102,8 @@
         <button type="button" ng-show="t.opened" ng-click="t.opened=!t.opened" class="transparent-btn">
           <span class="glyphicon glyphicon-chevron-up"></span>
         </button>
-        <button type="button" class="btn btn-xs btn-join btn-warning" ng-show="t.completed">Close</button>
-        <button type="button" class="btn btn-xs btn-join btn-success" ng-show="!t.completed">Open</button>
+        <button type="button" class="btn btn-xs btn-join btn-warning" ng-show="t.completed">Full</button>
+        <button type="button" class="btn btn-xs btn-join btn-success" ng-show="!t.completed">Join</button>
       </td>
     </tr>
     </tbody>

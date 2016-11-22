@@ -22,6 +22,7 @@ var socketio = require('socket.io')(server, {
 require('./config/socketio')(socketio);
 require('./config/express')(app);
 require('./routes')(app);
+var match = require('./match');
 
 // Start server
 function startServer() {
@@ -30,8 +31,17 @@ function startServer() {
   });
 }
 
+// Match every 5 minutes or when a search, or query, or post generated
+function startMatchBackground () {
+  setInterval(function() {
+    console.log('Matching...');
+    match.runMatch();
+  }, 3000);
+}
+
 sqldb.sequelize.sync()
   .then(startServer)
+  .then(startMatchBackground)
   .catch(function(err) {
     console.log('Server failed to start due to error: %s', err);
   });

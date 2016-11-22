@@ -67,6 +67,30 @@ function handleError(res, statusCode) {
 
 // Gets a list of Trips
 export function index(req, res) {
+  var pickup = req.query.pickup;
+  var dropoff = req.query.dropoff;
+  var time = req.query.time;
+
+  if (pickup && dropoff && time) {
+    return Trip.findAll({
+      include: [
+        {
+          model: db.Driver,
+          as: 'driver',
+          include: [{ model: db.User, as: 'user'}],
+        },
+        {
+          model: db.Vehicle,
+          as: 'vehicle'
+        }
+      ],
+      limit: 20,
+      where: { f_city: pickup, t_city: dropoff, f_datetime: {gt: time} }
+    })
+      .then(respondWithResult(res))
+      .catch(handleError(res));
+  }
+
   return Trip.findAll({
     include: [{
       model: db.Driver,

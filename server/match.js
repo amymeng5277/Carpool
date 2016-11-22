@@ -1,6 +1,20 @@
+/**
+ * Matching logic
+ */
+
+'use strict';
+
+import errors from './components/errors';
+import path from 'path';
+import sqldb from './sqldb';
+import {Trip} from './sqldb';
+
+var db = require('./sqldb');
+
+module.exports = {
 
   // -- BEGIN OF ROUTE MATCHING --
-  function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+  getDistanceFromLatLonInKm: function(lat1,lon1,lat2,lon2) {
     var R = 6371; // Radius of the earth in km
     var dLat = deg2rad(lat2-lat1);  // deg2rad below
     var dLon = deg2rad(lon2-lon1); 
@@ -12,76 +26,14 @@
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
     var d = R * c; // Distance in km
     return d;
-  }
+  },
 
-  function deg2rad(deg) {
+  deg2rad: function(deg) {
     return deg * (Math.PI/180)
-  }
-
-  // SAMPLE QUERY
-  // {
-  //   'pickup': {
-  //     'city': 'Cambridge',
-  //     'lat': 43.4434036, 
-  //     'lon': -80.3090553
-  //   },
-  //   'dropoff': {
-  //     'city': 'Mississauga',
-  //     'lat': 43.5929203, 
-  //     'lon': -79.6452374
-  //   },
-  //   'time': 1479601047,
-  //   'qid': 1
-  // }
-
-  // SAMPLE TRIPS
-  // [
-  //   {
-  //     'pickup': {
-  //       'city': 'Cambridge',
-  //       'lat': 43.4434036,
-  //       'lon': -80.3090553
-  //     },
-  //     'dropoff': {
-  //       'city': 'Mississauga',
-  //       'lat': 43.5929203,
-  //       'lon': -79.6452374
-  //     },
-  //     'time': 1479601047,
-  //     'id':1
-  //   },
-  //   {
-  //     'pickup': {
-  //       'city': 'Cambridge',
-  //       'lat': 43.4234036,
-  //       'lon': -80.3090553
-  //     },
-  //     'dropoff': {
-  //       'city': 'Mississauga',
-  //       'lat': 43.5929203,
-  //       'lon': -79.6452374
-  //     },
-  //     'time': 1479601047,
-  //     'id':2
-  //   },
-  //   {
-  //     'pickup': {
-  //       'city': 'Cambridge',
-  //       'lat': 43.4134036,
-  //       'lon': -80.3090553
-  //     },
-  //     'dropoff': {
-  //       'city': 'Mississauga',
-  //       'lat': 43.5929203,
-  //       'lon': -79.6452374
-  //     },
-  //     'time': 1479601047,
-  //     'id':3
-  //   }
-  // ];
+  },
 
   // sub function of findMatches that runs for just a single query, returns an array
-  function findQueryMatch (query, trips) {
+  findQueryMatch: function(query, trips) {
     var matches = [];
     for (var t = 0; t < trips.length; t++) {
       if (query.pickup.city == trips[t].pickup.city &&    // start the same city
@@ -125,7 +77,7 @@
       }
     }
     return matches;
-  }
+  },
 
   // This is the searching logic, I stubbed out all the actual DB calls because I don't know
   // how to call them. This function should be called whenever there's a new update to the
@@ -133,7 +85,7 @@
 
   // queries is a JSON array of type queries
   // trips is a JSON array of trips
-  function findAllMatches (queries, trips) {
+  findAllMatches: function(queries, trips) {
     var matches = {};
     for (var q = 0; q < queries.length; q++) {
       matches[queries[q]['qid'].toString()] = findQueryMatch(queries[q], trips);
@@ -144,5 +96,28 @@
     //   '321321': [3213,3213,23213,21321,312,3213,123],
     //   '2311': [2,32,23,3,13,21,312,321,23] 
     // }
+  },
+
+  // runs a match amongst all the queries and trips
+  runMatch: function() {
+    // Trip.findAll({
+    //   include: [
+    //     {
+    //       model: db.Driver,
+    //       as: 'driver',
+    //       include: [{ model: db.User, as: 'user'}],
+    //     },
+    //     {
+    //       model: db.Vehicle,
+    //       as: 'vehicle'
+    //     }
+    //   ],
+    //   limit: 20,
+    //   where: { f_city: pickup, t_city: dropoff, f_datetime: {gt: time} }
+    // })
+    //   .then(function (results) {
+    //     console.log(results);
+    //   })
+    //   .catch();
   }
-  // -- END OF ROUTE MATCHING --
+};

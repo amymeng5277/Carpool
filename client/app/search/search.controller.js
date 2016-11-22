@@ -54,17 +54,23 @@ class SearchController {
     };
 
     $scope.postQuery = function() {
-      var pickup = $('#pickup').val();
-      pickup = pickup.split(' ').join('+');
-      var dropoff = $('#dropoff').val();
-      dropoff = dropoff.split(' ').join('+');
-      var time = $('#datetime').val();
-      time = time.split(' ').join('+');
+      Auth.getCurrentUser(user=> {
+        if (!user._id) {
+          $state.go('login');
+          return;
+        }
 
-      var url = '/api/querys?pickup=' + pickup + '&dropoff=' + dropoff + '&time=' + time;
-      $http.post(url).success(response=> {
-        $('#no-matches-1').hide();
-        $('#no-matches-2').show();
+        var data = {
+          'passengerId': user._id,
+          'f_city': $('#pickup').val(),
+          't_city': $('#dropoff').val(),
+          'dep_date_f': $('#datetime').val()
+        };
+
+        $http.post('/api/querys', data).success(response=> {
+          $('#no-matches-1').hide();
+          $('#no-matches-2').show();
+        });
       });
     };
 

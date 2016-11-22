@@ -12,6 +12,7 @@ export default function (sequelize, DataTypes) {
     t_city_id: DataTypes.INTEGER(11),
     f_address: DataTypes.STRING(255),
     t_city: DataTypes.STRING(255),
+    f_city: DataTypes.STRING(255),
     t_address: DataTypes.STRING(255),
     f_latitude: DataTypes.DOUBLE,
     f_longitude: DataTypes.DOUBLE,

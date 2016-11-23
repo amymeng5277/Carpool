@@ -81,6 +81,7 @@
         animation: true,
         templateUrl: 'myModalContent.html',
         size: 'sm',
+        backdrop: 'static',
         controller: function ($state, $modalInstance, $scope) {
           $scope.ok = function () {
             $modalInstance.close();

@@ -42,6 +42,7 @@ class NavbarController {
       templateUrl: 'app/trip/modal/trip.modal.html',
       controller: 'TripModalInstanceCtrl',
       controllerAs: 'tripModal',
+      backdrop: 'static',
       size: size,
       //resolve: {
       //}

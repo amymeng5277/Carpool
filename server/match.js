@@ -8,8 +8,10 @@ import errors from './components/errors';
 import path from 'path';
 import sqldb from './sqldb';
 import {Trip} from './sqldb';
+import {Query} from './sqldb';
 
 var db = require('./sqldb');
+var notify = require('./notify');
 
 module.exports = {
 
@@ -100,24 +102,42 @@ module.exports = {
 
   // runs a match amongst all the queries and trips
   runMatch: function() {
-    // Trip.findAll({
-    //   include: [
-    //     {
-    //       model: db.Driver,
-    //       as: 'driver',
-    //       include: [{ model: db.User, as: 'user'}],
-    //     },
-    //     {
-    //       model: db.Vehicle,
-    //       as: 'vehicle'
-    //     }
-    //   ],
-    //   limit: 20,
-    //   where: { f_city: pickup, t_city: dropoff, f_datetime: {gt: time} }
-    // })
-    //   .then(function (results) {
-    //     console.log(results);
-    //   })
-    //   .catch();
+    // gets all queries
+    Query.findAll()
+      .then(function(results) {
+
+        // loop through each query
+        for (var r = 0; r < results.length; r++) {
+          var pickup = results[r].f_city;
+          var dropoff = results[r].t_city;
+          var time = results[r].dep_date_f;
+          var id = results[r]._id;
+
+          // gets a matching trip
+          Trip.findAll({
+            include: [
+              {
+                model: db.Driver,
+                as: 'driver',
+                include: [{ model: db.User, as: 'user'}],
+              },
+              {
+                model: db.Vehicle,
+                as: 'vehicle'
+              }
+            ],
+            limit: 20,
+            where: { f_city: pickup, t_city: dropoff, f_datetime: {gte: time} }
+          })
+            .then(function (matchResults) {
+              console.log('Matches: ' + matchResults.length);
+
+              // there is a match with the query, now notify the user
+              notify.notifyUserQuery(id);
+            })
+            .catch();
+        }
+      })
+      .catch();
   }
 };

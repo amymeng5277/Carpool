@@ -4,10 +4,11 @@
 
   class ProfileController {
 
-    constructor($http, $scope, socket, Auth, $state, $modal) {
+    constructor($http, $scope, socket, Auth, $state, $modal,$anchorScroll) {
       this.$http = $http;
       this.$state = $state;
       this.$modal = $modal;
+      this.$anchorScroll = $anchorScroll;
       var _this = this;
 
       Auth.getCurrentUser(function (user) {
@@ -80,15 +81,21 @@
       var modalInstance = this.$modal.open({
         animation: true,
         templateUrl: 'myModalContent.html',
-        size: 'sm',
+        size: 'lg',
         backdrop: 'static',
-        controller: function ($state, $modalInstance, $scope) {
+        controller: function ($state, $modalInstance, $scope, $location, $anchorScroll) {
           $scope.ok = function () {
             $modalInstance.close();
             $state.reload();
+            $location.hash('top');
+
+            // call $anchorScroll(
+            $anchorScroll();
           };
         }
       });
+
+     
     }
   }
 

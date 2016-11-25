@@ -36,7 +36,7 @@ function startMatchBackground () {
   setInterval(function() {
     console.log('Matching...');
     match.runMatch();
-  }, 3000);
+  }, 1000 * 60 * 2);
 }
 
 sqldb.sequelize.sync()

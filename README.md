@@ -1,3 +1,16 @@
+#highlights
+1. Whole complete SDLC from dev to test to deploy    
+2. unit test and integraton test    
+3. ORM framework that we can change database    
+4. better DB migration    
+5. MVVM pattern in AngularJS    
+6. Responsive Web Design by using Bootstrap.     
+7. Ajax everywhere to make better use experience and lower data communication.     
+8. Use IoC in FrontEnd and both in BackEnd: 1) better component-reuse 2) make it testable since lower coupling between layers.     
+
+
+
+
 # uwece651f16-new
 
 This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.0.0.

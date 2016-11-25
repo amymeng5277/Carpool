@@ -31,7 +31,7 @@
         </a>
       </td>
       <td>{{ t.f_datetime|date:'yyyy-MM-dd HH:mm:ss'}}
-        <div ng-show="t.opened" class="animate-show">In 48h 45m</div>
+        <div ng-show="t.opened" class="animate-show">In <span count-down="{{ t.f_datetime_count_down }}"></span></div>
       </td>
       <td>{{ t.seats_available }}/{{ t.vehicle.seat}}
         <div ng-show="t.opened" class="animate-show"><img class="car-seats" src="assets/images/car.png"></div>

@@ -62,6 +62,11 @@ class NavbarController {
     ismeridian = !ismeridian;
   }
 
+  isDriver() {
+    var user = this.getCurrentUser();
+    return !!user.driver;
+  }
+
   update() {
     var d = new Date();
     d.setHours(14);

@@ -23,7 +23,7 @@ export default function (sequelize, DataTypes) {
     price: DataTypes.DOUBLE,
     seats_available: DataTypes.INTEGER(11),
     wheelchair: DataTypes.BOOLEAN,
-    babyseat: DataTypes.BOOLEAN,
+    babySeat: DataTypes.BOOLEAN,
     open: DataTypes.BOOLEAN,
     completed: DataTypes.BOOLEAN
   }, {

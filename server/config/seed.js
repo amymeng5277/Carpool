@@ -140,7 +140,7 @@ Vehicle.sync()
       color: 'Blue',
       year: 2015,
       wheelchair: 1,
-      babyseat: '0',
+      babySeat: '0',
       licenseNumber: '33-CCC-DDD',
     }, {
       _id: 2,
@@ -151,7 +151,7 @@ Vehicle.sync()
       color: 'White',
       year: 2016,
       wheelchair: 1,
-      babyseat: '2',
+      babySeat: '2',
       licenseNumber: '33-CCC-KKK',
     },{
       _id: 3,
@@ -162,7 +162,7 @@ Vehicle.sync()
       color: 'Blue',
       year: 2015,
       wheelchair: 1,
-      babyseat: '0',
+      babySeat: '0',
       licenseNumber: '33-CCC-DDD',
     }, {
       _id: 4,
@@ -173,7 +173,7 @@ Vehicle.sync()
       color: 'White',
       year: 2016,
       wheelchair: 1,
-      babyseat: '2',
+      babySeat: '2',
       licenseNumber: '33-CCC-KKK',
     }]).then(function () {
       logger.info('finished populating vehicles!');

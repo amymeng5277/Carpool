@@ -8,6 +8,7 @@ import express from 'express';
 import sqldb from './sqldb';
 import config from './config/environment';
 import http from 'http';
+var logger = require('tracer').console();
 
 // Populate databases with sample data
 if (config.seedDB) { require('./config/seed'); }
@@ -34,9 +35,9 @@ function startServer() {
 // Match every 5 minutes or when a search, or query, or post generated
 function startMatchBackground () {
   setInterval(function() {
-    console.log('Matching...');
+    logger.info('Matching...');
     match.runMatch();
-  }, 1000 * 60 * 2);
+  }, 1000 * 60 * 10);
 }
 
 sqldb.sequelize.sync()

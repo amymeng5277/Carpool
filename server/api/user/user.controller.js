@@ -177,6 +177,9 @@ exports.me = function(req, res, next) {
         model: db.Vehicle,
         as: 'vehicles'
       }],
+    },{
+      model: db.Passenger,
+      as: 'passenger',
     }]
   })
     .then(function(user) { // don't ever give out the password or salt
@@ -209,6 +212,9 @@ exports.myTrips = function(req, res, next) {
         include: [{
           model: db.Vehicle,
           as: 'vehicle'
+        }, {
+          model: db.Passenger,
+          as: 'passengers'
         }]
       }]
     }, {
@@ -220,6 +226,9 @@ exports.myTrips = function(req, res, next) {
         include: [{
           model: db.Vehicle,
           as: 'vehicle'
+        }, {
+          model: db.Passenger,
+          as: 'passengers'
         }]
       }]
     }],

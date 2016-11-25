@@ -28,9 +28,9 @@ function notify(msgId, type) {
         subject: msg.subject,
         html: msg.content
       });
-      //console.log("Send email to " + msg.user.email);
-      //console.log(msg.subject);
-      //console.log(msg.content);
+      console.log("Send email to " + msg.user.email);
+      console.log(msg.subject);
+      console.log(msg.content);
     }
   });
   if( type == "email" || type == "both") {

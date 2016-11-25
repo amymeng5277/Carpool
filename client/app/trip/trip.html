@@ -33,10 +33,10 @@
       <td>{{ t.f_datetime|date:'yyyy-MM-dd HH:mm:ss'}}
         <div ng-show="t.opened" class="animate-show">In <span count-down="{{ t.f_datetime_count_down }}"></span></div>
       </td>
-      <td>{{ t.seats_available }}/{{ t.vehicle.seat}}
+      <td>{{ t.passengers.length }}/{{ t.seats_available}}
         <div ng-show="t.opened" class="animate-show"><img class="car-seats" src="assets/images/car.png"></div>
       </td>
-      <td><i class="fa fa-female" ng-show="t.babyseat"></i> <i class="fa fa-music"></i> <i class="fa fa-wheelchair" ng-show="t.wheelchair"></i></td>
+      <td><i class="fa fa-female" ng-show="t.babySeat"></i> <i class="fa fa-music"></i> <i class="fa fa-wheelchair" ng-show="t.wheelchair"></i></td>
       <td>{{ t.vehicle.maker}}
         <div ng-show="t.opened" class="animate-show">{{ t.vehicle.year}} {{t.vehicle.model}}</div>
       </td>
@@ -47,8 +47,8 @@
         <button type="button" ng-show="t.opened" ng-click="t.opened=!t.opened" class="transparent-btn">
           <span class="glyphicon glyphicon-chevron-up"></span>
         </button>
-        <button type="button" class="btn btn-xs btn-join btn-warning" ng-show="t.completed">Close</button>
-        <button type="button" class="btn btn-xs btn-join btn-success" ng-show="!t.completed">Open</button>
+        <button type="button" class="btn btn-xs btn-join btn-warning" ng-show="t.passengers.length == t.seats_available">Full</button>
+        <button type="button" class="btn btn-xs btn-join btn-success" ng-show="t.passengers.length < t.seats_available">Not Full</button>
       </td>
     </tr>
     </tbody>

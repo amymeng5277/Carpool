@@ -14,6 +14,7 @@ import jsonpatch from 'fast-json-patch';
 import {Trip} from '../../sqldb';
 
 var db = require('../../sqldb');
+var match = require('../../match')
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -73,16 +74,17 @@ export function index(req, res) {
 
   if (pickup && dropoff && time) {
     return Trip.findAll({
-      include: [
-        {
-          model: db.Driver,
-          as: 'driver',
-          include: [{ model: db.User, as: 'user'}],
-        },
-        {
-          model: db.Vehicle,
-          as: 'vehicle'
-        }
+      include: [{
+        model: db.Driver,
+        as: 'driver',
+        include: [{model: db.User, as: 'user'}],
+      }, {
+        model: db.Vehicle,
+        as: 'vehicle'
+      }, {
+        model: db.Passenger,
+        as: 'passengers'
+      }
       ],
       limit: 20,
       where: { f_city: pickup, t_city: dropoff, f_datetime: {gt: time} }
@@ -102,6 +104,9 @@ export function index(req, res) {
     }, {
       model: db.Vehicle,
       as: 'vehicle'
+    }, {
+      model: db.Passenger,
+      as: 'passengers'
     }]
   })
     .then(respondWithResult(res))
@@ -135,6 +140,10 @@ export function show(req, res) {
 // Creates a new Trip in the DB
 export function create(req, res) {
   return Trip.create(req.body)
+    .then(res => {
+      setTimeout(match.runMatch, 100);
+      return res;
+    })
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }

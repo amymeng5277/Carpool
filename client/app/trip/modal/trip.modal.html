@@ -118,11 +118,11 @@
 
 
     <div ng-show="tripModal.new_trip.car_model" class="form-group">
-      <label for="babyseat" class="col-sm-3 control-label">Provide baby-seat</label>
+      <label for="babySeat" class="col-sm-3 control-label">Provide baby-seat</label>
 
       <div class="col-sm-4">
-        <div id="babyseat" ng-repeat="selected_vehicles in tripModal.vehicles | filter:tripModal.new_trip.car_model">
-          <input type="checkbox" class="form-control form-check-input" ng-model="tripModal.new_trip.babyseat" style="box-shadow: none"  />
+        <div id="babySeat" ng-repeat="selected_vehicles in tripModal.vehicles | filter:tripModal.new_trip.car_model">
+          <input type="checkbox" class="form-control form-check-input" ng-model="tripModal.new_trip.babySeat" style="box-shadow: none"  />
         </div>
       </div>
     </div>

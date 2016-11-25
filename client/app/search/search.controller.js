@@ -61,7 +61,8 @@ class SearchController {
         }
 
         var data = {
-          'passengerId': user._id,
+          'passengerId': user.passenger._id,
+          'userId': user._id,
           'f_city': $('#pickup').val(),
           't_city': $('#dropoff').val(),
           'dep_date_f': $('#datetime').val()

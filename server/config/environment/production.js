@@ -15,7 +15,7 @@ module.exports = {
 
   // Sequelize connecton opions
   sequelize: {
-    uri: process.env.MYSQL_DEV_URL,
+    uri: process.env.MYSQL_URL,
     options: {
       logging: console.log,
       dialectOptions: {

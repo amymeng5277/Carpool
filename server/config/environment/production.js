@@ -13,15 +13,20 @@ module.exports = {
           process.env.PORT ||
           8080,
 
+  // Sequelize connecton opions
   sequelize: {
-    uri:  process.env.SEQUELIZE_URI ||
-          'sqlite://',
+    uri: process.env.MYSQL_DEV_URL,
     options: {
-      logging: false,
-      storage: 'dist.sqlite',
+      logging: console.log,
+      dialectOptions: {
+        charset: 'utf8mb4'
+      },
       define: {
         timestamps: false
       }
     }
-  }
+  },
+
+  // Seed database on startup
+  seedDB: true
 };

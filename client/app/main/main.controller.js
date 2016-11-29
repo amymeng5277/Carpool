@@ -9,8 +9,8 @@ class MainController {
     this.awesomeThings = [];
 
     $scope.slides = [
-      {image: 'assets/images/road1.jpg', text: 'The Best and Easy Way!'},
-      {image: 'assets/images/road2.jpg', text: 'Sign in Right Now!'}
+      {image: 'assets/images/ezcarpool.png', text: 'The Best and Easy Way!'},
+      {image: 'assets/images/ezcarpool.png', text: 'Sign in Right Now!'}
     ];
 
     $http.get('/api/things').then(response => {
